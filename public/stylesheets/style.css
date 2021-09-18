@@ -1,0 +1,63 @@
+
+
+a {
+  color: #00B7FF;
+}
+.container{
+margin-left: 10%;
+margin-right: 15%;
+width: 900px;
+}
+#video-container{
+  border: 1px solid black;
+ float: left;
+  margin-top: 30px;
+}
+@media screen and ( min-width: 64em) {
+  #video-container {
+    height: 540px;
+    width: 900px;
+  }
+  input#search-video {
+   
+  width: 100%;
+  }
+}
+iframe#video-yt{
+  height: 100%;
+  width: 100%;
+}
+#search{
+  width: 900px;
+  text-align:left;
+}
+#live-chat{
+  border: 1px solid black;
+  height: 600px;
+  width: 300px;
+ margin-left: 30px;
+ margin-top: 5px;
+float: left;
+}
+#online{ 
+  background-color: aqua;
+  height: 60px;
+  width: 300px;
+}
+#user{
+  float: right;
+  
+}
+#message-chat{
+  background-color: aquamarine;
+  height: 450px;
+  width: 300px;
+}
+#message{
+  border: 1px solid ;
+  background-color: aquamarine;
+  height: 87px;
+  width: 295px;
+}
+
+

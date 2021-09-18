@@ -1,0 +1,27 @@
+{
+  "name": "radio-ver1",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "babel-node ./app.js"
+  },
+  "dependencies": {
+    "@babel/node": "^7.14.9",
+    "axios": "^0.21.1",
+    "cookie-parser": "^1.4.5",
+    "debug": "^2.6.9",
+    "express": "~4.16.1",
+    "express-handlebars": "^5.3.3",
+    "http-errors": "^1.6.3",
+    "morgan": "^1.9.1",
+    "node-fetch": "^3.0.0",
+    "nodemon": "^2.0.12",
+    "request": "^2.88.2",
+    "socket.io": "^4.2.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.14.8",
+    "@babel/core": "^7.15.0",
+    "@babel/preset-env": "^7.15.0"
+  }
+}
