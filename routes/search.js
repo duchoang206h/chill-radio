@@ -1,6 +1,6 @@
-import express from 'express';
+const express = require('express');
 var router = express.Router();
-import axios from 'axios'
+const axios =require('axios')
 /* GET home page. */
 /* async function getTitle(videoId){
    
@@ -26,4 +26,4 @@ setTimeout(()=>{res.json(videolist);},305)
  
 });
 
-export default router;
+module.exports = router;

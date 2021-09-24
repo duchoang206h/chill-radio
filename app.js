@@ -1,19 +1,17 @@
-import createError from 'http-errors';
-import express from 'express';
-import cookieParser from 'cookie-parser';
-import logger from 'morgan';
-import { createServer } from 'http';
+const createError =  require('http-errors');
+const express = require('express');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const { createServer } = require('http');
 
 //socketio
 const app = express();
 const server = createServer(app);
-import { Server } from "socket.io";
+const { Server } = require("socket.io");
 const io = new Server(server);
+const handlebars = require('express-handlebars');
 
-
-import handlebars from 'express-handlebars';
-
-import searchRouter from './routes/search';
+const searchRouter = require('./routes/search');
 
 app.set('socket.io', io);
 // view engine setup
@@ -21,7 +19,7 @@ app.set('socket.io', io);
 app.engine('handlebars',handlebars())
 app.set('view engine', 'handlebars'); 
 
-app.use(logger('dev'));
+app.use(logger('tiny'));
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());

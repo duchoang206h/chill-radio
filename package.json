@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "babel-node ./app.js"
+    "start": "node ./app.js"
   },
   "dependencies": {
     "@babel/node": "^7.14.9",
