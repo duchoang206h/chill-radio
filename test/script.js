@@ -1,14 +1,50 @@
-/*JS FOR SCROLLING THE ROW OF THUMBNAILS*/ 
-$(document).ready(function () {
-    $('.vid-item').each(function(index){
-      $(this).on('click', function(){
-        var current_index = index+1;
-        $('.vid-item .thumb').removeClass('active');
-        $('.vid-item:nth-child('+current_index+') .thumb').addClass('active');
-      });
-    });
-  });
 
-fetch('https://www.googleapis.com/youtube/v3/search?q=chill&maxResults=50&key=AIzaSyDiqU4vPycF8KBCcwCxpgb4Qwidtiqbb-Y')
-  .then(response => response.json())
-  .then(data => console.log(data));
+      // 2. This code loads the IFrame Player API code asynchronously.
+      var tag = document.createElement('script');
+
+      tag.src = "https://www.youtube.com/iframe_api";
+      var firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+      // 3. This function creates an <iframe> (and YouTube player)
+      //    after the API code downloads.
+      var player;
+      function onYouTubeIframeAPIReady() {
+        player = new YT.Player('player', {
+          height: '390',
+          width: '640',
+          videoId: 'M7lc1UVf-VE',
+          playerVars: {
+            'playsinline': 1
+          },
+          events: {
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange
+          }
+        });
+      }
+
+      // 4. The API will call this function when the video player is ready.
+      function onPlayerReady(event) {
+        event.target.playVideo();
+        console.log("video ready");
+      }
+
+      // 5. The API calls this function when the player's state changes.
+      //    The function indicates that when playing a video (state=1),
+      //    the player should play for six seconds and then stop.
+      var done = false;
+      function onPlayerStateChange(event) {
+       /*  console.log("bi chi r");
+        console.log(player.getPlayerState()) */
+       if(event.data ==0){
+        player.loadVideoById('4NB26N2VKVI',124)
+       }
+        /* if (event.data == YT.PlayerState.PLAYING && !done) {
+          setTimeout(stopVideo, 6000);
+          done = true;
+        } */
+      }
+      function stopVideo() {
+        player.stopVideo();
+      }

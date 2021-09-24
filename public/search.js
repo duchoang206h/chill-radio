@@ -23,7 +23,7 @@ async function search (keyword){
 
 
           });
-          document.getElementById('search_result').innerHTML += result;
+          document.getElementById('search_result').innerHTML = result;
         } catch (error) {
 
         }
@@ -33,5 +33,9 @@ function addtoplay(videoId){
     document.getElementById('search').style.display = 'none';
     document.getElementById('search_result').innerHTML = '';
     document.getElementById('search_type') = '';
+}
+function closeSearch(){
+    console.log("Tới đây r")
+    document.getElementById('search').style.display = 'none';
 }
 /* document.body.addEventListener('click',()=>) */
