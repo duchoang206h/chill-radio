@@ -1,10 +1,11 @@
 /*JS FOR SCROLLING THE ROW OF THUMBNAILS*/ 
+
 async function addtoplaylist(){
   // check author
   const isAuthenticated = await auth0.isAuthenticated();
   if(isAuthenticated){
     
-    document.getElementById('search').style.display = 'block';
+    $('#search').css("display",'block');
   }else{
     console.log("not login");
     document.getElementById('login').style.display ='block';
