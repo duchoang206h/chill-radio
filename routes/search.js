@@ -22,8 +22,8 @@ data.data.items.forEach(async (item) => {
     video.videoId = item.id.videoId;
     videolist.push(video);
 });
-setTimeout(()=>{res.json(videolist);},305)
- 
+//setTimeout(()=>{res.json(videolist);},305)
+res.json(videolist)
 });
 
 module.exports = router;
