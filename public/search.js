@@ -1,17 +1,18 @@
-const search_type = $('#search_type');
-const search_result = $('#search_result');
-const search_div = $('#search');
-search_type.on('keyup',(event)=>{
-if(event.keyCode ===13){
-    const keyword = search_type.val().toString();
-   // console.log(keyword);
-    search(keyword);
-}
+
+$('#search_type').on('keyup',(event)=>{
+    if(event.keyCode ===13){
+        const keyword = $('#search_type').val().toString();
+     
+        search(keyword);
+    }
 })
+
+
+
 async function search (keyword){
         try {
             let result= '';
-            const encodedURI = encodeURI('http://localhost:3000/search/video');
+            const encodedURI = encodeURI('http://localhost:3000/api/search');
           const response = await axios.post(encodedURI,{keyword: keyword}); // Get arr Video from server
        //   Display video to playlist
           response.data.forEach(item => {
@@ -25,19 +26,17 @@ async function search (keyword){
 
 
           });
-          search_result.html(result);
+          $('#search_result').html(result);
         } catch (error) {
 
         }
 }
 function addtoplay(videoId){
     $('#videoframe').attr("src",`https://www.youtube.com/embed/${videoId}?autoplay=1`);
-    search_div.css("display",'none');
-    search_result.html('');
-    search_type.html('');
+    $('#search').css("display",'none');
+    $('#search_result').html('');
+    $('#search_type').html('');
 }
 function closeSearch(){
-    search_div.css("display",'none');
+    $('#search').css("display",'none');
 }
-
-/* document.body.addEventListener('click',()=>) */

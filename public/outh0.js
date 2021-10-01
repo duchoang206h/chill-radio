@@ -7,7 +7,7 @@ const configureClient = async () => {
     });
   };
 
-  window.onload = async() => {
+  window.onLoad = async() => {
     await configureClient()
     updateUI();
 
