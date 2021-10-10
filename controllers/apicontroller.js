@@ -1,10 +1,13 @@
 const getVideoInfor = require('../helpers/getVideoInfor')
 const {Video} = require('../models/Schema')
+
 module.exports = {
   search : async (req, res) =>{
     const keyword = req.body.keyword.toString().replace(/ /g,'+'); // Replace keyword space by +
+    console.log(keyword);
      try {
         const response = await getVideoInfor(keyword);
+        console.log(response);
         return res.status(200).json(response);
       } catch (error) {
         console.log(error.message);

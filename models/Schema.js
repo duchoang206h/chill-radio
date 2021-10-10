@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+const mongoose = require("mongoose")
 const Schema = mongoose.Schema
 const UserSchema = new Schema({
     firstName: {
@@ -24,7 +24,7 @@ const VideoSchema = new Schema({
         unique: true
     },
     duration:{
-        type: String,
+        type: Number,
         required:true
     },
     title:{
@@ -32,13 +32,12 @@ const VideoSchema = new Schema({
     },
     addby:{
         type: Schema.Types.ObjectId,
-        ref: 'User'
+        ref: "User"
     },
-    date: Date
 })
 
-const User = mongoose.model('User', UserSchema);
-const Video =  mongoose.model('Video', UserSchema);
+const User = mongoose.model("User", UserSchema);
+const Video =  mongoose.model("Video", VideoSchema);
 module.exports = {
     User,Video
 }

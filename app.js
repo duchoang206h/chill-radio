@@ -14,7 +14,9 @@ const helmet = require('helmet')
 const apiRouter = require('./routes/api');
 const indexRouter = require('./routes/index')
 const morgan = require('morgan');
-
+const mongoose = require('mongoose');
+require('dotenv').config()
+mongoose.connect(process.env.MONGODB_URI,{useNewUrlParser: true, useUnifiedTopology: true},()=>console.log("Connected to mongodb"))
 app.set('socket.io', io);
 // view engine setup
  app.set('views', './views')
@@ -30,7 +32,7 @@ app.use(express.static('public'))
 
 app.use('/api', ratelimit);// Rate limit
 app.use('/api', apiRouter);
-app.use('/', indexRouter);
+app.get('/', indexRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

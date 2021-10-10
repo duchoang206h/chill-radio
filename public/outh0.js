@@ -1,3 +1,5 @@
+
+
 let auth0 = null;
 
 const configureClient = async () => {
@@ -7,8 +9,9 @@ const configureClient = async () => {
     });
   };
 
-  window.onLoad = async() => {
+ let loadd= async() => {
     await configureClient()
+    console.log("load xong ");
     updateUI();
 
     const isAuthenticated = await auth0.isAuthenticated();
@@ -36,7 +39,7 @@ const configureClient = async () => {
         window.history.replaceState({}, document.title, "/");
     }
 }
-
+loadd();
 const login = async() => {
     await auth0.loginWithRedirect({
         redirect_uri: window.location.origin
@@ -58,3 +61,15 @@ const updateUI = async() => {
         document.getElementById('user').style.display="flex";
     }
 }
+async function addtoplaylist(){
+    // check author
+    const isAuthenticated = await auth0.isAuthenticated()  ;
+    if(isAuthenticated){
+      
+      $('#search').css("display",'block');
+    }else{
+      console.log("not login");
+      document.getElementById('login').style.display ='block';
+    }
+    
+  }

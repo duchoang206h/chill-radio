@@ -16,6 +16,9 @@ const fetchVideoInfor = async (videoId) =>{
     const response = await axios.get(ENCODE_YTURI_TITLE);
     let video = {};
     video.title = response.data.items[0].snippet.title;
+    // Convert duration from youtube to second Example PT53M27S to 318027s
+    const m = (response.data.items[0].contentDetails.duration.replace(/PT/g,"").replace(/M/g,",").replace(/S/g,"")).split(',');
+    video.duration = Number(m[0]*60) + Number(m[1])
     video.videoId = videoId;
     return video; 
 }
