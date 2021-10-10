@@ -2,28 +2,66 @@ const {Video} = require('../models/Schema');
 const Queue = require('../helpers/queue')
 class Main {
     constructor(){
-        this. queue = new Queue();
+        this.queue = new Queue();
+        this.time = 0; 
+        this.currentVideo = {};
         this.init();
         this.loop();
     }
-    init(){
-    const videoList = await Video.aggregate([{},{$project:{_id:0, date:0}},{$limit: 20},{$sort:{date: 1}}]);
-    this.queue.init(videoList);
+    async init(){
+    await this.checkqueue()
+    /* const videoList = await Video.find({}).limit(5); // Get Videos from database 
+    console.log(videoList);
+    this.queue.init(videoList); */
+    this.currentVideo = this.queue.dequeue(); /// 
+    this.time = Date.now()/1000;
+    }
+    async loop(){
+        console.log("Loop");
+        await this.checkqueue()
+        this.videoEnd();
+        setTimeout(()=>this.loop(),5000 ) // Check update every 20 minutes
+    }
+    getCurrentTime(){
+        return Date.now()/1000;
+    }
+    getCurrentVideo(){
+        return {
+            videoId: this.currentVideo.videoId,
+            startAt: this.getCurrentTime() - this.time
+        }
+    }
+    videoEnd(){
+        console.log("Check");
+        console.log(this.getCurrentTime()-this.time);
+        console.log(Number(this.currentVideo.duration));
+      if(this.getCurrentTime()-this.time >= Number(this.currentVideo.duration) -5){
+          this.currentVideo = this.dequeue(); // 
+          this.time = this.getCurrentTime(); // Reset this.time equal to current time 
+          return true;
+      }
+      return false;
+    }
+    dequeue(){
+        return this.queue.dequeue();
+    }
+    quesesize(){
+        return this.queue.size()
     }
     onChange(){
     }
-    loop(){
-        checkqueue();
-        setTimeout(()=>this.loop(), 20*60) // Check update every 20 minutes
-    }
+    
     addvideo(Video){
     this.queue.enqueue(Video)
     }
-    checkqueue(){
-        if(this.queue.size <=5){
-        const videoList = await Video.aggregate([{},{$project:{_id:0, date:0}},{$limit: 10},{$sort:{date: 1}}]);
+    async checkqueue(){
+        console.log("checkqueue ");
+        console.log(this.quesesize());
+        if(this.quesesize() <=2){
+        const videoList = await Video.find({}).limit(5);
+        console.log(videoList);
         this.queue.addarray(videoList);
         }
     }
 }
-module.exports = Main
+module.exports =  Main

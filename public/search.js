@@ -2,7 +2,7 @@
 $('#search_type').on('keyup',(event)=>{
     if(event.keyCode ===13){
         const keyword = $('#search_type').val().toString();
-     
+      console.log(keyword)
         search(keyword);
     }
 })
@@ -12,8 +12,9 @@ $('#search_type').on('keyup',(event)=>{
 async function search (keyword){
         try {
             let result= '';
-            const encodedURI = encodeURI('http://localhost:3000/api/search');
+        const encodedURI = encodeURI('http://localhost:3000/api/search');
           const response = await axios.post(encodedURI,{keyword: keyword}); // Get arr Video from server
+          console.log(response.data);
        //   Display video to playlist
           response.data.forEach(item => {
               result +=`

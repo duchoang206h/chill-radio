@@ -2,33 +2,29 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://i.ytimg.com https://www.youtube.com/">
-<meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.auth0.com ">
-<meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net ">
-<meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://ajax.googleapis.com ">
-<meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://kit.fontawesome.com ">
-
+    <meta http-equiv="Content-Security-Policy" content=" img-src http://localhost:3000/ https://i.ytimg.com ;inline style  http://www.google.com">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="background.css">
     <link rel="stylesheet" href="start.css">
-      <link rel="stylesheet" href="search.css">
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js" integrity="sha256-ciUwnEGarIFnFs5oFQ5gpzo0Bnx5iRMvr510mNF+K6I=" crossorigin="anonymous"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="search.css">
+    <script src="auth0-spa-js.production.js.map"></script>
+     <script type="text/javascript" src="https://www.youtube.com/iframe_api"></script>
+    <script src="jquery.js"></script>
+
     <title>Document</title>
 </head>
 <body>
 
     <div id="start">
         <span>Welcom to chill radio</span>
-        <button onclick="start()">Let's go</button>
+        <button id="start">Let's go</button>
     </div>
 <main id="main">
     <div id="header">
       <span id="logo"> Chill radio</span>
         <div  id="user">
-            <img id="userImg" src="https://i.ytimg.com/vi/iETryHhFnpM/default.jpg">
+            <img id="userImg" src="">
             <span id="userName">Hi,</span>
         </div>
         
@@ -37,9 +33,7 @@
         <div id="search_div">
            <button id="close" onclick="closeSearch()"> <i class="fas fa-window-close"></i></button>
             <p>Tìm kiếm</p>
-            <input id="search_type" type="text"><button id="btn_search"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/></button>
-</svg>
+            <input id="search_type" type="text"> <button id="btn_search">
         </div>
         <div id="search_result">
         </div>
@@ -68,8 +62,8 @@
     <div class="wrapper">
         <!--Video-->
         <div class="video">
-            <iframe id="videoframe"  width="95%" height="95%" src="https://www.youtube.com/embed/y1UdQdwwp30" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-           <!-- <iframe id="vidyteo" type="text/html" src="https://www.youtube.com/embed/Giv0zvtVuzU?autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>-->
+            <div width="95%" height="95%" id="videoframe"></div>
+         <!--   <iframe id="videoframe"  width="95%" height="95%" src="https://www.youtube.com/embed/NLBTbCfR-Fg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
         </div>
         <!--Play list-->
         
@@ -80,7 +74,7 @@
             <div id="videolist">
                 <div class="box" >
                     <span id="order">1</span>
-                    <span><img width="80px" height="60px" src="https://i.ytimg.com/vi/iETryHhFnpM/default.jpg"></span>
+                    <span><img width="80px" height="60px" src=""></span>
                     <div>
                         <div id="title"><span >Tìm hiểu về Gf Bootstrap</span></div>
                         <div id="addby"><span>added by</span></div>
@@ -89,60 +83,62 @@
                 </div>
                 <div class="box" >
                     <span id="order">1</span>
-                    <img width="80px" height="60px" src="https://i.ytimg.com/vi/iETryHhFnpM/default.jpg">
+                    <img width="80px" height="60px" src="">
                     
                 </div>
                 <div class="box" >
                     <span id="order">1</span>
-                    <img width="80px" height="60px" src="https://i.ytimg.com/vi/iETryHhFnpM/default.jpg">
+                    <img width="80px" height="60px" src="">
                     <span id="title">Tìm hiểu về Grid System trong Bootstrap</span>
                 </div>
                 <div class="box" >
                     <span id="order">1</span>
-                    <img width="80px" height="60px" src="https://i.ytimg.com/vi/iETryHhFnpM/default.jpg">
+                    <img width="80px" height="60px" src="">
                     <span id="title">Tìm hiểu về Grid System trong Bootstrap</span>
                 </div>
                 <div class="box" >
                     <span id="order">1</span>
-                    <img width="80px" height="60px" src="https://i.ytimg.com/vi/iETryHhFnpM/default.jpg">
+                    <img width="80px" height="60px" src="">
                     <span id="title">Tìm hiểu về Grid System trong Bootstrap</span>
                 </div>
                 <div class="box" >
                     <span id="order">1</span>
-                    <img width="80px" height="60px" src="https://i.ytimg.com/vi/iETryHhFnpM/default.jpg">
+                    <img width="80px" height="60px" src="">
                     <span id="title">Tìm hiểu về Grid System trong Bootstrap</span>
                 </div>
                 <div class="box" >
                     <span id="order">1</span>
-                    <img width="80px" height="60px" src="https://i.ytimg.com/vi/iETryHhFnpM/default.jpg">
+                    <img width="80px" height="60px" src="">
                     <span id="title">Tìm hiểu về Grid System trong Bootstrap</span>
                 </div>
                 <div class="box" >
                     <span id="order">1</span>
-                    <img width="80px" height="60px" src="https://i.ytimg.com/vi/iETryHhFnpM/default.jpg">
+                    <img width="80px" height="60px" src="">
                     <span id="title">Tìm hiểu về Grid System trong Bootstrap</span>
                 </div>
                 <div class="box" >
                     <span id="order">1</span>
-                    <img width="80px" height="60px" src="https://i.ytimg.com/vi/iETryHhFnpM/default.jpg">
+                    <img width="80px" height="60px" src="">
                     <span id="title">Tìm hiểu về Grid System trong Bootstrap</span>
                 </div>
                 <div class="box" >
                     <span id="order">1</span>
-                    <img width="80px" height="60px" src="https://i.ytimg.com/vi/iETryHhFnpM/default.jpg">
+                    <img width="80px" height="60px" src="">
                     <span id="title">Tìm hiểu về Grid System trong Bootstrap</span>
                 </div>
                 
             </div>
            
             <div class="addVideo">
-                <button id="addVideo" onclick="addtoplaylist()">Add to Playlist</butt>
+                <button id="addVideo">Add to Playlist</butt>
             </div>
     </div>
 </main>
-<script src="https://cdn.auth0.com/js/auth0-spa-js/1.13/auth0-spa-js.production.js" integrity="sha256-AdY4neVYGio+sM1NagXLE2vwfSITBviRc6CAxzo445I=" crossorigin="anonymous"></script>
+
+<script src="axios.js"></script>
 <script src="outh0.js"></script>
 <script src="main.js"></script>
 <script src="search.js"></script>
+<script src="youtube_iframe_api.js"></script>
 </body>
 </html>
