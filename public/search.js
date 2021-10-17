@@ -1,4 +1,5 @@
-
+const search_uri = origin + '/api/v1/search';
+const search_uri_encode = encodeURI(search_uri)
 $('#search_type').on('keyup',(event)=>{
     if(event.keyCode ===13){
         const keyword = $('#search_type').val().toString();
@@ -6,14 +7,10 @@ $('#search_type').on('keyup',(event)=>{
         search(keyword);
     }
 })
-
-
-
 async function search (keyword){
         try {
             let result= '';
-        const encodedURI = encodeURI('http://localhost:3000/api/search');
-          const response = await axios.post(encodedURI,{keyword: keyword}); // Get arr Video from server
+          const response = await axios.post(search_uri_encode,{keyword: keyword}); // Get arr Video from server
           console.log(response.data);
        //   Display video to playlist
           response.data.forEach(item => {

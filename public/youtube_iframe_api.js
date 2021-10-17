@@ -1,8 +1,8 @@
 let tag = document.createElement('script');
 let volume = document.querySelector("#volume-control");
-const URL_GETVIDEO = 'http://localhost:3000/api/getCurrentVideo'
-console.log(URL_GETVIDEO)
-const URL_GETVIDEO_ENCODE  = encodeURI(URL_GETVIDEO);
+const video_uri = origin +'/api/v1/video'
+console.log(video_uri)
+const video_uri_encode  = encodeURI(video_uri);
       tag.src = "https://www.youtube.com/iframe_api";
       let firstScriptTag = document.getElementsByTagName('script')[0];
       firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
@@ -27,7 +27,7 @@ const URL_GETVIDEO_ENCODE  = encodeURI(URL_GETVIDEO);
 
       // 4. The API will call this function when the video player is ready.
       async function onPlayerReady(event) {
-        const res = await axios.get(URL_GETVIDEO_ENCODE)
+        const res = await axios.get(video_uri_encode)
         console.log(res);
         player.loadVideoById(res.data.videoId,res.data.startAt )
       }

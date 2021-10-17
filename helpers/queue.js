@@ -3,22 +3,25 @@ class Queue {
     this.data = [];
   }
 
-  init(arr){           // Create for my use case
+  init(arr) {
+    // Create for my use case
     this.data = arr;
   }
 
-  size(){               // Create for my use case
+  size() {
+    // Create for my use case
     return this.data.length;
   }
 
-  addarray(arr){        // Create for my use case
-    this.data = [...this.data,...arr]
+  addarray(arr) {
+    // Create for my use case
+    this.data = [...this.data, ...arr];
   }
 
   isEmpty() {
     return this.data.length === 0;
   }
-  
+
   enqueue(value) {
     this.data.push(value);
     return true;
@@ -43,4 +46,4 @@ class Queue {
     this.data.length = 0;
   }
 }
-module.exports =  Queue;
+module.exports = Queue;

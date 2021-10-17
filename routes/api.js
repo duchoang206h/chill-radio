@@ -1,5 +1,4 @@
-const express =  require('express');
-const router = express.Router();
+const router =  require('express').Router();
 const apicontroller = require('../controllers/apicontroller')
 const Main = require('../controllers/getlistvideo');
 let g = new Main();
@@ -13,16 +12,9 @@ router.get('/video', (req,res)=>{
     const currentVideo =  g.getCurrentVideo();
     console.log(currentVideo);
     res.status(200).json(currentVideo);
-  
 });
-router.post('/video', (req,res)=>{
-  res.status(200).json({msg:"Chua code xong"})
-});
-router.put('/video', (req,res)=>{
-    res.status(200).json({msg:"Chua code xong"})
-  });
-router.delete('/video', (req,res)=>{
-    res.status(200).json({msg:"Chua code xong"})
-  });
+router.post('/video', apicontroller.video.post);
+router.put('/video', apicontroller.video.put);
+router.delete('/video', apicontroller.video.delete);
 module.exports = router;
 
