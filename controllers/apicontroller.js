@@ -1,7 +1,7 @@
 const getVideoInfor = require("../helpers/getVideoInfor");
 const { Video } = require("../models/Schema");
 const search = {
-  get: async (req, res) => {
+  post: async (req, res) => {
     const keyword = req.body.keyword.toString().replace(/ /g, "+"); // Replace keyword space by +
     console.log(keyword);
     try {
@@ -13,7 +13,7 @@ const search = {
       return res.status(500).json([]);
     }
   },
-  post: (req, res) => {
+  get: (req, res) => {
     res.status(404).json({ msg: "Not found" });
   },
   put: (req, res) => {
@@ -27,7 +27,7 @@ const search = {
   },
 };
 const video = {
-
+  get: async (req, res) => {},
   post: async (req, res) => {
     const newVideo = new Video(req.body.video);
     try {
@@ -37,7 +37,17 @@ const video = {
       return res.status(500).json(error.message | error);
     }
   },
+  put: (req, res) => {
+    res.status(404).json({ msg: "Not found" });
+  },
+  patch: (req, res) => {
+    res.status(404).json({ msg: "Not found" });
+  },
+  delete: (req, res) => {
+    res.status(404).json({ msg: "Not found" });
+  },
 };
 module.exports = {
-  search, video
+  search,
+  video,
 };
