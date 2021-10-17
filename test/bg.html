@@ -3,7 +3,7 @@
   <body>
     <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
     <div id="player"></div>
-
+    <input id="volume-control" type="range" min="0" max="100" value="50">
     <script>
       // 2. This code loads the IFrame Player API code asynchronously.
       var tag = document.createElement('script');
@@ -14,6 +14,8 @@
 
       // 3. This function creates an <iframe> (and YouTube player)
       //    after the API code downloads.
+      let volume = document.querySelector("#volume-control");
+
       var player;
       function onYouTubeIframeAPIReady() {
         player = new YT.Player('player', {
@@ -46,6 +48,7 @@
       function stopVideo() {
         player.stopVideo();
       }
+      
     </script>
   </body>
 </html>

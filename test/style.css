@@ -98,7 +98,10 @@ background:#3A3A3A;
   font-size: 13px;
   margin-top:5px;
 }
-
+#volume-control{
+  position: absolute;
+  z-index: 2;
+}
 
 @media (max-width: 624px) {
   body {

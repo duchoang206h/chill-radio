@@ -2,17 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="Content-Security-Policy" content=" img-src http://localhost:3000/ https://i.ytimg.com ;inline style  http://www.google.com">
+    <meta http-equiv="Content-Security-Policy" content=" img-src http://localhost:3000/ https://i.ytimg.com https://lh3.googleusercontent.com/ ;inline style  http://www.google.com">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="background.css">
     <link rel="stylesheet" href="start.css">
     <link rel="stylesheet" href="search.css">
-    <script src="auth0-spa-js.production.js.map"></script>
+    <script src="https://cdn.auth0.com/js/auth0-spa-js/1.13/auth0-spa-js.production.js" integrity="sha256-AdY4neVYGio+sM1NagXLE2vwfSITBviRc6CAxzo445I=" crossorigin="anonymous"></script>
+   {{!--  <script src="auth0-spa-js.production.js.map"></script> --}}
      <script type="text/javascript" src="https://www.youtube.com/iframe_api"></script>
     <script src="jquery.js"></script>
 
-    <title>Document</title>
+    <title>Chill Radio</title>
 </head>
 <body>
 
@@ -42,7 +43,7 @@
         <span>Sign in to add video</span>
   <button onclick="login()">Sign in</button>
     </div>
-    <div id="layer">
+   
     </div>
      <div id="listener">
        <span>
@@ -66,7 +67,8 @@
          <!--   <iframe id="videoframe"  width="95%" height="95%" src="https://www.youtube.com/embed/NLBTbCfR-Fg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
         </div>
         <!--Play list-->
-        
+         <div id="layer"></div>
+          <input id="volume-control" type="range" min="0" max="100" value="30">
         <div class="playlist">
             <div id="queceVideo">
                 <span>Play List</span>
@@ -133,6 +135,7 @@
                 <button id="addVideo">Add to Playlist</butt>
             </div>
     </div>
+   
 </main>
 
 <script src="axios.js"></script>
