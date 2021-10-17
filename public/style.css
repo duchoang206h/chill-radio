@@ -139,6 +139,13 @@ span#title {
     z-index: 1;
     display: block;
 }
+#volume-control{
+    position: absolute;
+    z-index: 2;
+    display: block;
+    margin-top: 10px;
+    margin-left: 10px;
+}
 #login{
     display: none;
     position: absolute;
@@ -183,7 +190,7 @@ span#title {
     width: 1200px;
     margin-bottom: 5px;
     position: relative;
-    border: 1px solid black;
+  
     justify-content: center;
 
 }

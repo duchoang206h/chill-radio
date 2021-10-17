@@ -33,7 +33,8 @@ async function search (keyword){
         }
 }
 function addtoplay(videoId){
-    $('#videoframe').attr("src",`https://www.youtube.com/embed/${videoId}?autoplay=1`);
+    player.loadVideoById(videoId);
+   // $('#videoframe').attr("src",`https://www.youtube.com/embed/${videoId}?autoplay=1`);
     $('#search').css("display",'none');
     $('#search_result').html('');
     $('#search_type').html('');

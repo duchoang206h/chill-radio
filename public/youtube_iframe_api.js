@@ -1,4 +1,5 @@
 let tag = document.createElement('script');
+let volume = document.querySelector("#volume-control");
 const URL_GETVIDEO = 'http://localhost:3000/api/getCurrentVideo'
 console.log(URL_GETVIDEO)
 const URL_GETVIDEO_ENCODE  = encodeURI(URL_GETVIDEO);
@@ -42,3 +43,7 @@ const URL_GETVIDEO_ENCODE  = encodeURI(URL_GETVIDEO);
       function stopVideo() {
         player.stopVideo();
       }
+volume.addEventListener("change", ()=> {
+        console.log(volume.value);
+ player.setVolume(volume.value);
+})

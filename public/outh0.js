@@ -60,6 +60,9 @@ const updateUI = async() => {
         document.getElementById('userName').innerText+=user.name;
         document.getElementById('user').style.display="flex";
     }
+    else{
+        document.getElementById('userImg').src = 'images/default_avata.png';
+    }
 }
 async function addtoplaylist(){
     // check author
