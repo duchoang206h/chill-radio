@@ -2,10 +2,7 @@ const config = require('../configs/config')
 const axios = require("axios");
 // Fetch List of videoId
 const fetchVideoId = async (keyword) => {
-    console.log(config.YOUTUBE_KEY);
   const YTURI_VIDEOID = `https://www.googleapis.com/youtube/v3/search?q=${keyword}&maxResults=10&key=${config.YOUTUBE_KEY}`;
-  console.log(YTURI_VIDEOID);
-  console.log("NICE");
   const ENCODE_YTURI_VIDEOID = encodeURI(YTURI_VIDEOID);
   const data = await axios(ENCODE_YTURI_VIDEOID);
   let response = data.data.items.map((item) => {

@@ -1,12 +1,12 @@
 const getVideoInfor = require("../helpers/getVideoInfor");
 const { Video } = require("../models/Schema");
+const {Main} =  require('../helpers/getlistvideo')
+const main = new Main()
 const search = {
   post: async (req, res) => {
     const keyword = req.body.keyword.toString().replace(/ /g, "+"); // Replace keyword space by +
-    console.log(keyword);
     try {
       const response = await getVideoInfor(keyword);
-      console.log(response);
       return res.status(200).json(response);
     } catch (error) {
       console.log(error.message);
@@ -27,7 +27,14 @@ const search = {
   },
 };
 const video = {
-  get: async (req, res) => {},
+  get: async (req, res) => {
+    const currentVideo =  main.getCurrentVideo();
+    res.status(200).json(currentVideo);
+  },
+  getAll: async (req, res) => {
+    const videolist =  main.getPlayList();
+    res.status(200).json(videolist);
+  },
   post: async (req, res) => {
     const newVideo = new Video(req.body.video);
     try {
@@ -49,5 +56,5 @@ const video = {
 };
 module.exports = {
   search,
-  video,
+  video
 };

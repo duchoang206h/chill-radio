@@ -1,7 +1,7 @@
 let tag = document.createElement('script');
+const socket = io("http://localhost:3000");
 let volume = document.querySelector("#volume-control");
 const video_uri = origin +'/api/v1/video'
-console.log(video_uri)
 const video_uri_encode  = encodeURI(video_uri);
       tag.src = "https://www.youtube.com/iframe_api";
       let firstScriptTag = document.getElementsByTagName('script')[0];
@@ -28,7 +28,7 @@ const video_uri_encode  = encodeURI(video_uri);
       // 4. The API will call this function when the video player is ready.
       async function onPlayerReady(event) {
         const res = await axios.get(video_uri_encode)
-        console.log(res);
+      //  console.log(res);
         player.loadVideoById(res.data.videoId,res.data.startAt )
       }
 
@@ -43,6 +43,16 @@ const video_uri_encode  = encodeURI(video_uri);
       function stopVideo() {
         player.stopVideo();
       }
+socket.on("new_video",(video)=>{
+  console.log("toi day");
+  console.log(video);
+  player.loadVideoById(video.videoId,video.startAt)
+  videolist = document.getElementById("videolist");   // Get the <ul> element with id="myList"
+  videolist.removeChild(list.childNodes[0]);
+})
+socket.on("new_listener",(listener)=>{
+  $('#listerns').html(listener);
+})
 volume.addEventListener("change", ()=> {
         console.log(volume.value);
  player.setVolume(volume.value);
