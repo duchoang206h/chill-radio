@@ -10,6 +10,7 @@ const app = express();
 const server = createServer(app);
 const { Server } = require("socket.io");
 const io = new Server(server);
+app.set('socketio', io);
 const handlebars = require("express-handlebars");
 const helmet = require("helmet");
 const apiRouter = require("./routes/api");

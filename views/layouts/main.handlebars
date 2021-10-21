@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="Content-Security-Policy" content=" img-src http://localhost:3000/ https://i.ytimg.com https://lh3.googleusercontent.com/ ;inline style  http://www.google.com">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="favicon.ico"/>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="background.css">
     <link rel="stylesheet" href="start.css">
@@ -47,8 +48,8 @@
     </div>
      <div id="listener">
        <span>
-           <spna>Listener:</spna>
-            <spna>10</spna>
+           <spna>Listeners:</spna>
+            <spna id="listerns">10</spna>
        </span>
     </div>
 
@@ -74,61 +75,7 @@
                 <span>Play List</span>
             </div>
             <div id="videolist">
-                <div class="box" >
-                    <span id="order">1</span>
-                    <span><img width="80px" height="60px" src=""></span>
-                    <div>
-                        <div id="title"><span >TÃ¬m hiá»ƒu vá» Gf Bootstrap</span></div>
-                        <div id="addby"><span>added by</span></div>
-                    </div>
-                   
-                </div>
-                <div class="box" >
-                    <span id="order">1</span>
-                    <img width="80px" height="60px" src="">
-                    
-                </div>
-                <div class="box" >
-                    <span id="order">1</span>
-                    <img width="80px" height="60px" src="">
-                    <span id="title">TÃ¬m hiá»ƒu vá» Grid System trong Bootstrap</span>
-                </div>
-                <div class="box" >
-                    <span id="order">1</span>
-                    <img width="80px" height="60px" src="">
-                    <span id="title">TÃ¬m hiá»ƒu vá» Grid System trong Bootstrap</span>
-                </div>
-                <div class="box" >
-                    <span id="order">1</span>
-                    <img width="80px" height="60px" src="">
-                    <span id="title">TÃ¬m hiá»ƒu vá» Grid System trong Bootstrap</span>
-                </div>
-                <div class="box" >
-                    <span id="order">1</span>
-                    <img width="80px" height="60px" src="">
-                    <span id="title">TÃ¬m hiá»ƒu vá» Grid System trong Bootstrap</span>
-                </div>
-                <div class="box" >
-                    <span id="order">1</span>
-                    <img width="80px" height="60px" src="">
-                    <span id="title">TÃ¬m hiá»ƒu vá» Grid System trong Bootstrap</span>
-                </div>
-                <div class="box" >
-                    <span id="order">1</span>
-                    <img width="80px" height="60px" src="">
-                    <span id="title">TÃ¬m hiá»ƒu vá» Grid System trong Bootstrap</span>
-                </div>
-                <div class="box" >
-                    <span id="order">1</span>
-                    <img width="80px" height="60px" src="">
-                    <span id="title">TÃ¬m hiá»ƒu vá» Grid System trong Bootstrap</span>
-                </div>
-                <div class="box" >
-                    <span id="order">1</span>
-                    <img width="80px" height="60px" src="">
-                    <span id="title">TÃ¬m hiá»ƒu vá» Grid System trong Bootstrap</span>
-                </div>
-                
+               
             </div>
            
             <div class="addVideo">
@@ -137,7 +84,7 @@
     </div>
    
 </main>
-
+<script src="/socket.io/socket.io.js"></script>
 <script src="axios.js"></script>
 <script src="outh0.js"></script>
 <script src="main.js"></script>
