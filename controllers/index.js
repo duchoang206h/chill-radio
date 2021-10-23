@@ -11,6 +11,9 @@ const index = (req, res) => {
         console.log("toi io");
         io.emit('new_video',video);
       })
+    myEmitter.on("addvideo",(video)=>{
+      io.emit('addvideo',video);
+    })
     socket.on('disconnect',()=>{
         listener--;
         console.log(listener);

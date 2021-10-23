@@ -1,5 +1,6 @@
 let tag = document.createElement('script');
-const socket = io("http://localhost:3000");
+let currentVideo = '';
+
 let volume = document.querySelector("#volume-control");
 const video_uri = origin +'/api/v1/video'
 const video_uri_encode  = encodeURI(video_uri);
@@ -29,6 +30,7 @@ const video_uri_encode  = encodeURI(video_uri);
       async function onPlayerReady(event) {
         const res = await axios.get(video_uri_encode)
       //  console.log(res);
+        currentVideo = res.data.videoId;
         player.loadVideoById(res.data.videoId,res.data.startAt )
       }
 
@@ -43,12 +45,13 @@ const video_uri_encode  = encodeURI(video_uri);
       function stopVideo() {
         player.stopVideo();
       }
-socket.on("new_video",(video)=>{
+  socket.on("new_video",(video)=>{
   console.log("toi day");
   console.log(video);
   player.loadVideoById(video.videoId,video.startAt)
-  videolist = document.getElementById("videolist");   // Get the <ul> element with id="myList"
-  videolist.removeChild(list.childNodes[0]);
+  console.log("check currentVideo",currentVideo);
+  document.getElementById(currentVideo).outerHTML = '';
+  currentVideo = video.videoId;
 })
 socket.on("new_listener",(listener)=>{
   $('#listerns').html(listener);

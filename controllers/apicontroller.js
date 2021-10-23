@@ -36,11 +36,16 @@ const video = {
     res.status(200).json(videolist);
   },
   post: async (req, res) => {
-    const newVideo = new Video(req.body.video);
+    const addvideo = req.body.video;
+    console.log("chech add video ");
+      console.log(addvideo);
+    const newVideo = new Video(addvideo);
     try {
       const response = await newVideo.save();
+      main.addvideo(addvideo);
       return res.status(200).json(response.message);
     } catch (error) {
+      console.log(error);
       return res.status(500).json(error.message | error);
     }
   },

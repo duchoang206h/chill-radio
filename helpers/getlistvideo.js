@@ -35,6 +35,7 @@ class Main {
     };
   }
   getPlayList(){
+    console.log(this.queue.data);
     return this.queue.data;
   }
   videoEnd() {
@@ -63,13 +64,8 @@ class Main {
   }
   async addvideo(video) {
     this.queue.enqueue(video);
-    const newVideo = new Video(video);
-    try {
-      await newVideo.save()
-    } catch (error) {
-      console.log(error);
-    }
-    newVideo.save((err))
+    myEmitter.emit('addvideo',video);
+    console.log(video);
   }
   async checkqueue() {
    // console.log("checkqueue ");
