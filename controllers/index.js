@@ -1,7 +1,13 @@
+const {github} = require('../helpers/oauth_getUserInfor')
 const {myEmitter} = require('../helpers/getlistvideo')
 let listener = 0;
-const index = (req, res) => {
-    res.render("index");
+const index = async (req, res) => {
+  if(!req.query.access_token) res.render("index");
+  else{
+   const { access_token, oauth} = req.query;
+   const {name,img_url} = await github(access_token);
+   res.render('index',{name:name, img_url: img_url})
+  }
     var io = req.app.get("socketio");
     io.on("connection", (socket) => {
         listener++;
@@ -15,7 +21,7 @@ const index = (req, res) => {
       io.emit('addvideo',video);
     })
     socket.on('disconnect',()=>{
-        listener--;
+        --listener;
         console.log(listener);
         io.emit('new_listener',listener)
       })

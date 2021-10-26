@@ -2,6 +2,7 @@ const createError = require("http-errors");
 const express = require("express");
 const cookieParser = require("cookie-parser");
 const { createServer } = require("http");
+const path = require('path')
 const cors = require("cors");
 const ratelimit = require("./middlewares/ratelimit");
 const config = require("./configs/config");
@@ -16,6 +17,7 @@ const helmet = require("helmet");
 const apiRouter = require("./routes/api");
 const indexRouter = require("./routes/index");
 const auth0config = require('./routes/auth0config')
+const oauth =require('./routes/oauth')
 const morgan = require("morgan");
 const mongoose = require("mongoose");
 mongoose.connect(
@@ -39,8 +41,11 @@ app.use(express.static("public"));
 app.use("/api/v1", ratelimit); // Rate limit
 app.use("/api/v1", apiRouter);
 app.use("/config",auth0config);
+app.use('/oauth',oauth)
 app.use("/", indexRouter);
-
+app.post('/login',(req,res)=>{
+  res.sendFile('login.html', { root: path.join(__dirname, './public') });
+})
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));
