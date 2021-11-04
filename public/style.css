@@ -30,7 +30,7 @@ display: none;
 
 .box {
     display: flex;
-    align-items: stretch;
+    align-items: center;
     margin: 5px;
 }
 

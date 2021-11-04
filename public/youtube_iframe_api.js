@@ -58,6 +58,7 @@ const video_uri_encode  = encodeURI(video_uri);
   console.log("check currentVideo",currentVideo);
   document.getElementById(currentVideo).outerHTML = '';
   currentVideo = video.videoId;
+  document.getElementById(`arrow-${currentVideo}`).style.display = 'block';
 })
 socket.on("new_listener",(listener)=>{
   $('#listerns').html(listener);
@@ -67,3 +68,4 @@ volume.addEventListener("change", ()=> {
         console.log(volume.value);
  player.setVolume(volume.value);
 })
+setTimeout(()=>document.getElementById(`arrow-${currentVideo}`).style.display = 'block',3000)

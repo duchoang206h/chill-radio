@@ -20,7 +20,7 @@ async function  start() {
     } 
     playlist += `
   <div class="box" id="${video.videoId}">
-  <span id="order">1</span>
+  <span id="order"><i id = "arrow-${video.videoId}" style="display:none;" class="fas fa-caret-right"></i></span>
   <span><img width="80px" height="60px" src="https://i.ytimg.com/vi/${video.videoId}/default.jpg"></span>
   <div>
       <div id="title"><span >${video.title}</span></div>
