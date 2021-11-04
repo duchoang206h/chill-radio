@@ -1,6 +1,5 @@
 const { Video } = require("../models/Schema");
 const Queue = require("../helpers/queue");
-const io = require('socket.io');
 const EventEmitter = require('events');
 class MyEmitter extends EventEmitter {};
 const myEmitter = new MyEmitter();
