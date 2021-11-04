@@ -13,7 +13,7 @@ class Main {
   }
   async init() {
     const videoList = await Video.find({}).limit(5); // Get Videos from database 
-   // console.log(videoList);
+    console.log(videoList);
     this.queue.addarray(videoList);
     this.currentVideo = this.queue.dequeue(); ///
     this.time = Date.now() / 1000;
@@ -57,7 +57,7 @@ class Main {
   }
   emitNewVideo() {
     const newvideo = this.getCurrentVideo()
-   
+
     myEmitter.emit('video_end',newvideo)
     console.log("video_end");
   }
