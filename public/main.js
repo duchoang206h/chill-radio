@@ -1,16 +1,13 @@
 const socket = io("http://localhost:3000");
 const playlist_uri = origin + "/api/v1/video/all";
 const playlist_uri_encode = encodeURI(playlist_uri);
-$("#start").click((e) => {
-  start();
-});
+
 $("#addVideo").click((e) => {
   addtoplaylist();
 });
 
 async function  start() {
   document.getElementById("start").style.display = "none";
-  document.getElementById("videoframe").src += "?autoplay=1";
   document.getElementById("main").style.display = "block";
  const videolist = await axios.get(playlist_uri_encode);
   console.log(videolist.data);
@@ -33,3 +30,4 @@ async function  start() {
   document.getElementById('videolist').innerHTML = playlist;
   });
 }
+start();

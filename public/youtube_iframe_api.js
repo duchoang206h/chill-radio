@@ -1,6 +1,6 @@
 let tag = document.createElement('script');
 let currentVideo = '';
-
+let startAt = 0;
 let volume = document.querySelector("#volume-control");
 const video_uri = origin +'/api/v1/video'
 const video_uri_encode  = encodeURI(video_uri);
@@ -11,13 +11,18 @@ const video_uri_encode  = encodeURI(video_uri);
       // 3. This function creates an <iframe> (and YouTube player)
       //    after the API code downloads.
       let player;
-      function onYouTubeIframeAPIReady() {
+      async function onYouTubeIframeAPIReady() {
+        const res = await axios.get(video_uri_encode)
+      //  console.log(res);
+        currentVideo = res.data.videoId;
+        startAt = res.data.startAt;
         player = new YT.Player('videoframe', {
           height: '95%',
           width: '95%',
-          videoId: 'M7lc1UVf-VE',
+          videoId: res.data.videoId,
           playerVars: {
-            'playsinline': 1
+            'playsinline': 1,
+            'autoplay': 1,
           },
           events: {
             'onReady': onPlayerReady,
@@ -28,10 +33,11 @@ const video_uri_encode  = encodeURI(video_uri);
 
       // 4. The API will call this function when the video player is ready.
       async function onPlayerReady(event) {
-        const res = await axios.get(video_uri_encode)
-      //  console.log(res);
-        currentVideo = res.data.videoId;
-        player.loadVideoById(res.data.videoId,res.data.startAt )
+       event.target.mute();
+       event.target.setVolume(0);
+       
+       event.target.loadVideoById(currentVideo,startAt);
+       /*  player.cueVideoById(currentVideo,startAt); */
       }
 
       // 5. The API calls this function when the player's state changes.
@@ -57,6 +63,7 @@ socket.on("new_listener",(listener)=>{
   $('#listerns').html(listener);
 })
 volume.addEventListener("change", ()=> {
+  player.unMute();
         console.log(volume.value);
  player.setVolume(volume.value);
 })
