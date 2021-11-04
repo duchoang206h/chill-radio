@@ -123,8 +123,8 @@ span#title {
     width: 260px;
 }
 #addby{
-    color: white;
-    font-family:Verdana;
+    color: rgb(146, 139, 139);
+    font-family:Candara;
     font-size: small;
     padding-left: 10px;
     height: 19px;
@@ -166,12 +166,16 @@ span#title {
 }
 #user span{
     color: white;
-    font-family:Verdana;
+    font-family:Candara;
+    display: inline-block;
+    vertical-align: middle;
     padding: 10px;
 }
 #user img{
     height: 60px;
     width: 60px;
+    display: inline-block;
+    vertical-align: middle;
     border-radius: 50%;
 }
 #listener{
@@ -200,7 +204,7 @@ span#title {
 }
 #logo{
     color: white;
-    font-family:Verdana;
+    font-family:Candara;
     font-size: 50px;
     align-items: center;
 }

@@ -2,6 +2,7 @@ const search_uri = origin + '/api/v1/search';
 const addvideo_uri = origin + '/api/v1/video';
 const search_uri_encode = encodeURI(search_uri);
 const addvideo_encode = encodeURI(addvideo_uri);
+console.log("cookie",decodeURIComponent(document.cookie));
 let resultlist = [];
 $('#search_type').on('keyup',(event)=>{
     if(event.keyCode ===13){

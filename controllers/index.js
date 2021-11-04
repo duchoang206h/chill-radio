@@ -1,11 +1,11 @@
-const {github} = require('../helpers/oauth_getUserInfor')
+
 const {myEmitter} = require('../helpers/getlistvideo')
 let listener = 0;
+const jwt = require('jsonwebtoken')
 const index = async (req, res) => {
-  if(!req.query.access_token) res.render("index");
+  if(!req.cookies.user) res.render("index");
   else{
-   const { access_token, oauth} = req.query;
-   const {name,img_url} = await github(access_token);
+   const {name,img_url} =await jwt.verify(req.cookies.user,'ngocmai1202')
    res.render('index',{name:name, img_url: img_url})
   }
     var io = req.app.get("socketio");
