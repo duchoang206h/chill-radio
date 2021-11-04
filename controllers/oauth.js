@@ -1,4 +1,7 @@
 const {github} = require('../configs/oauth')
+const {oauth_github} = require('../helpers/oauth_getUserInfor')
+
+const jwt = require('jsonwebtoken')
 const axios =require('axios')
 const githubController = {
     getCode:(req,res)=>{
@@ -20,9 +23,13 @@ const githubController = {
     })
     console.log(response.data);
     const access_token = response.data.access_token;
-    res.redirect(`/?oauth=github&access_token=${access_token}`)
+    const {name,img_url} = await oauth_github(access_token);
+    const user = await jwt.sign({name:name,img_url:img_url},"ngocmai1202",{expiresIn:31536000});
+    res.cookie('user',user,{/* httpOnly:true */maxAge:31536000000});
+    res.redirect('/')
     }
 }
+
 module.exports = {
     githubController,
 

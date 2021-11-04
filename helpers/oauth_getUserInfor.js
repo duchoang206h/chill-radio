@@ -1,6 +1,6 @@
 const axios = require('axios')
 
-const github = async (access_token)=>{
+const oauth_github = async (access_token)=>{
 const response = await axios({
     method:'get',
     url:"https://api.github.com/user",
@@ -14,5 +14,5 @@ return {
 }
 }
 module.exports = {
-    github
+    oauth_github
 }
