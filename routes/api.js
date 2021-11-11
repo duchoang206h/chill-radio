@@ -1,15 +1,15 @@
 const router =  require('express').Router();
-const apicontroller = require('../controllers/apicontroller')
+const {searchController,videoController} = require('../controllers/apicontroller')
 // Route /api/v1/search
-router.get('/search', apicontroller.search.get);
-router.post('/search',apicontroller.search.post);
-router.put('/search',apicontroller.search.put );
-router.delete('/search',apicontroller.search.delete );
+router.get('/search', searchController.get);
+router.post('/search',searchController.post);
+router.put('/search',searchController.put );
+router.delete('/search',searchController.delete );
 // Route /api/v1/video
-router.get('/video',apicontroller.video.get);
-router.get('/video/all',apicontroller.video.getAll);
-router.post('/video', apicontroller.video.post);
-router.put('/video', apicontroller.video.put);
-router.delete('/video', apicontroller.video.delete);
+router.get('/video',videoController.get);
+router.get('/video/all',videoController.getAll);
+router.post('/video', videoController.post);
+router.put('/video', videoController.put);
+router.delete('/video', videoController.delete);
 module.exports = router;
 

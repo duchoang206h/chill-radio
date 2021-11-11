@@ -1,11 +1,9 @@
 const socket = io("http://localhost:3000");
 const playlist_uri = origin + "/api/v1/video/all";
 const playlist_uri_encode = encodeURI(playlist_uri);
-
 $("#addVideo").click((e) => {
   addtoplaylist();
 });
-
 async function  start() {
   document.getElementById("start").style.display = "none";
   document.getElementById("main").style.display = "block";
@@ -29,5 +27,18 @@ async function  start() {
   </div>`
   document.getElementById('videolist').innerHTML = playlist;
   });
+}
+const updateUI = (playlist)=>{
+ 
+
+}
+async function addtoplaylist() {
+  // check author
+  if (decodeURIComponent(document.cookie)) {
+    $("#search").css("display", "block");
+  } else {
+    console.log("not login");
+    document.getElementById("login").style.display = "block";
+  }
 }
 start();

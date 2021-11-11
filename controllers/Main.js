@@ -1,8 +1,9 @@
 const { Video } = require("../models/Schema");
 const Queue = require("../helpers/queue");
-const EventEmitter = require('events');
+/* const EventEmitter = require('events');
 class MyEmitter extends EventEmitter {};
-const myEmitter = new MyEmitter();
+const myEmitter = new MyEmitter(); */
+const SocketService = require('../helpers/socketService')
 class Main {
   constructor() {
     this.queue = new Queue();
@@ -19,10 +20,9 @@ class Main {
     this.time = Date.now() / 1000;
   }
   async loop() {
-   // console.log("Loop");
     await this.checkqueue();
     this.videoEnd();
-    setTimeout(() => this.loop(), 5000); // Check update every 20 minutes
+    setTimeout(() => this.loop(), 5000); 
   }
   getCurrentTime() {
     return Date.now() / 1000;
@@ -35,16 +35,13 @@ class Main {
   }
   getPlayList(){
     console.log(this.queue.data);
-    return this.queue.data;
+    return [this.currentVideo,...this.queue.getAllData()];
   }
   videoEnd() {
-   // console.log("Check");
-   // console.log(this.getCurrentTime() - this.time);
-   // console.log(Number(this.currentVideo.duration));
     if (this.getCurrentTime() - this.time >= Number(this.currentVideo.duration) - 5) {
-      this.currentVideo = this.dequeue(); //
+      this.currentVideo = this.dequeue(); 
       this.time = this.getCurrentTime();
-      this.emitNewVideo() // Reset this.time equal to current time
+      this.emitNewVideo();
       return true;
     }
     return false;
@@ -55,25 +52,23 @@ class Main {
   quesesize() {
     return this.queue.size();
   }
-  emitNewVideo() {
+  emitNewVideo(){
     const newvideo = this.getCurrentVideo()
-
-    myEmitter.emit('video_end',newvideo)
-    console.log("video_end");
+    //myEmitter.emit('video_end',newvideo)
+    SocketService.ioEmit('new_video',newvideo)
+    console.log("new_video",newvideo );
   }
   async addvideo(video) {
     this.queue.enqueue(video);
-    myEmitter.emit('addvideo',video);
+   // myEmitter.emit('addvideo',video);
+   SocketService.ioEmit('addvideo',video)
     console.log(video);
   }
   async checkqueue() {
-   // console.log("checkqueue ");
-   // console.log(this.quesesize());
     if (this.quesesize() <= 2) {
       const videoList = await Video.find({}).limit(5);
-    //  console.log(videoList);
       this.queue.addarray(videoList);
     }
   }
 }
-module.exports = {Main,myEmitter};
+module.exports = {Main};

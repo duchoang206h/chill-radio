@@ -9,14 +9,16 @@ const config = require("./configs/config");
 //socketio
 const app = express();
 const server = createServer(app);
-const { Server } = require("socket.io");
-const io = new Server(server);
-app.set('socketio', io);
+
+// init socketio
+require('./helpers/socketService').initialize(server)
+//const io = new Server(server);
+//app.set('socketio', io);
 const handlebars = require("express-handlebars");
 const helmet = require("helmet");
 const apiRouter = require("./routes/api");
 const indexRouter = require("./routes/index");
-const auth0config = require('./routes/auth0config')
+//const auth0config = require('./routes/auth0config')
 const oauth =require('./routes/oauth')
 const morgan = require("morgan");
 const mongoose = require("mongoose");
@@ -25,7 +27,7 @@ mongoose.connect(
   { useNewUrlParser: true, useUnifiedTopology: true },
   () => console.log("Connected to mongodb")
 );
-app.set("socket.io", io);
+//app.set("socket.io", io);
 // view engine setup
 app.set("views", "./views");
 app.engine("handlebars", handlebars());
@@ -37,11 +39,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static("public"));
-
+app.use(require('./middlewares/passport').initialize())
 app.use("/api/v1", ratelimit); // Rate limit
 app.use("/api/v1", apiRouter);
-app.use("/config",auth0config);
-app.use('/oauth',oauth)
+//app.use("/config",auth0config);
+app.use('/auth',oauth)
 app.use("/", indexRouter);
 app.post('/login',(req,res)=>{
   res.sendFile('login.html', { root: path.join(__dirname, './public') });

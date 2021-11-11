@@ -1,12 +1,14 @@
 const router = require('express').Router();
-const {githubController} = require('../controllers/oauth')
-/* router.post('/login/oauth/facebook',)
-router.post('/login/oauth/google',) */
-router.post('/login/github',githubController.getCode)
-/* router.post('/login/oauth/microsoft',)
-router.post('/callback/facebook',)
-router.post('/callback/google',) */
-router.get('/callback/github',githubController.getAccess_token)
+const {callback} = require('../controllers/oauth')
+const passport = require('../middlewares/passport')
+// router.post('/login/oauth/facebook',)
+router.post('/login/google',passport.authenticate('google', { scope: ['https://www.googleapis.com/auth/plus.login'] })) 
+router.post('/login/github',passport.authenticate('github', { scope: [ 'user:email' ] }))
+/* router.post('/login/oauth/microsoft',)*/
+router.post('/login/facebook', passport.authenticate('facebook'))
+router.get('/google/callback', passport.authenticate('google', { failureRedirect: '/login' }),callback) 
+router.get('/github/callback', passport.authenticate('github', { failureRedirect: '/login' }),callback)
+router.get('/facebook/callback', passport.authenticate('facebook', { failureRedirect: '/login' }),callback)
 /* router.post('/callback/microsoft',) */
 
 module.exports = router

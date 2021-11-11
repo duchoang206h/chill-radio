@@ -11,12 +11,9 @@ class Queue {
   }
   dequeue() {
     if (this.priodata.length == 0) {
-      /* if (this.data.length == 0) return undefined; */
-         this.data.shift();
-      return this.data.slice(0,1)[0]
+      return this.data.shift();
     } else {
-      this.priodata.shift();
-      return this.priodata.slice(0,1)[0]
+      return  this.priodata.shift();
     }
   }
   size() {
