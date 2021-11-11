@@ -1,8 +1,10 @@
 const getVideoInfor = require("../helpers/getVideoInfor");
 const { Video } = require("../models/Schema");
-const {Main} =  require('../helpers/getlistvideo')
+const {Main} =  require('../controllers/Main')
+const {JWT_SECRET} = require('../configs/config')
+const jwt = require('jsonwebtoken')
 const main = new Main()
-const search = {
+const searchController = {
   post: async (req, res) => {
     const keyword = req.body.keyword.toString().replace(/ /g, "+"); // Replace keyword space by +
     try {
@@ -26,7 +28,7 @@ const search = {
     res.status(404).json({ msg: "Not found" });
   },
 };
-const video = {
+const videoController = {
   get: async (req, res) => {
     const currentVideo =  main.getCurrentVideo();
     res.status(200).json(currentVideo);
@@ -36,7 +38,10 @@ const video = {
     res.status(200).json(videolist);
   },
   post: async (req, res) => {
-    const addvideo = req.body.video;
+    const user = req.cookies.user;
+    const {name} = jwt.verify(user,JWT_SECRET)
+    let addvideo = req.body.video;
+    addvideo.addby = name
     console.log("chech add video ");
       console.log(addvideo);
     const newVideo = new Video(addvideo);
@@ -60,6 +65,6 @@ const video = {
   },
 };
 module.exports = {
-  search,
-  video
+  searchController,
+  videoController
 };

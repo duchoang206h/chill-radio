@@ -1,31 +1,34 @@
 
-const {myEmitter} = require('../helpers/getlistvideo')
-let listener = 0;
-const jwt = require('jsonwebtoken')
+const jwt = require("jsonwebtoken"); // 
+const { JWT_SECRET } = require("../configs/config");
+let online_listener = 0;
+let list_connected = {}
+const io = require('../helpers/socketService').getIO();
 const index = async (req, res) => {
-  if(!req.cookies.user) res.render("index");
-  else{
-   const {name,img_url} =await jwt.verify(req.cookies.user,'ngocmai1202')
-   res.render('index',{name:name, img_url: img_url})
+  if (!req.cookies.user)
+    res.render("index", { img_url: "images/default_avata.png" });
+  else {
+    try {
+      const { name, img_url } = await jwt.verify(req.cookies.user, JWT_SECRET);
+      res.render("index", { name: name, img_url: img_url });
+    } catch (error) {
+      res.render("index", { img_url: "images/default_avata.png" });
+    }
   }
-    var io = req.app.get("socketio");
-    io.on("connection", (socket) => {
-        listener++;
-        console.log(listener);
-        io.emit('new_listener',listener);
-    myEmitter.on("video_end",(video)=>{
-        console.log("toi io");
-        io.emit('new_video',video);
-      })
-    myEmitter.on("addvideo",(video)=>{
-      io.emit('addvideo',video);
-    })
+
+  io.on("connection", (socket) => {
+    if(!list_connected[socket.handshake.address]) {
+      list_connected[socket.handshake.address] = true;
+      online_listener++;
+      io.emit('new_listener',online_listener)
+    }
     socket.on('disconnect',()=>{
-        --listener;
-        console.log(listener);
-        io.emit('new_listener',listener)
-      })
-    });
-   
-  };
-  module.exports = index
+      if(list_connected[socket.handshake.address]) {
+        list_connected[socket.handshake.address] = false;
+        online_listener--;
+        io.emit('new_listener',online_listener)
+      }
+    })
+  }); 
+};
+module.exports = index;
