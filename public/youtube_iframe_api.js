@@ -68,4 +68,4 @@ volume.addEventListener("change", ()=> {
         console.log(volume.value);
  player.setVolume(volume.value);
 })
-setTimeout(()=>document.getElementById(`arrow-${currentVideo}`).style.display = 'block',3000)
+//setTimeout(()=>document.getElementById(`arrow-${currentVideo}`).style.display = 'block',3000)

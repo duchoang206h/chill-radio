@@ -31,8 +31,7 @@ const VideoSchema = new Schema({
     type: String,
   },
   addby: {
-    type: Schema.Types.ObjectId,
-    ref: "User",
+    type:String,
   },
 });
 
