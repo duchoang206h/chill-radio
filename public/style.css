@@ -5,7 +5,8 @@ html {
 body{
     min-height: 100%;
   align-items: center;
-  background-image:  url('images/sky.jpg');
+ /*  background-color:#0F131B; */
+  background-image:  url('images/gady.jpg');
 
 }
 main{
