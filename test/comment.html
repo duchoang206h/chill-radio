@@ -6,19 +6,55 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
 </head>
-<body>
-  <div id="box">
-    <div id="g">gggg</div>
-    <div id="gg">gggg</div>
-    <div id="gg">gggg</div>
-    <div id="gg">gggg</div>
-    <div id="gg">gggg</div>
-  </div>
-  <script>
-  setTimeout(()=>{
+<style>
+  html{
+    background-color: black;
+  }
+  #star-six {
+      width: 1px;
+      height: 1px;
+      border-radius: 50%;
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+      border-bottom: 10px solid red;
+      position: relative;
+      background: transparent;
+
+    animation: animStar 50s linear infinite;
+    }
+    #star-six:after {
+      border-radius: 50%;
+      width: 0;
+      height: 0;
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+      border-top: 10px solid red;
+      position: absolute;
+      content: "";
+      top: 3px;
+      left: -5px;
+      content: " ";
    
-  console.log("xoa");
-  },5000)
-  </script>
+     /* top: 2000px; */
+    width: 1px;
+    height: 1px; 
+    background: transparent;
+    
+    }
+    @keyframes animStar {
+    from {
+      transform: translateY(0px);
+    }
+    to {
+      transform: translateY(-2000px);
+    }
+  }
+</style>
+<body>
+ 
+    <div id="star-six"></div>
+
+  </div>
+
 </body>
 </html>

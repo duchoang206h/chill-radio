@@ -41,7 +41,8 @@ const videoController = {
     const user = req.cookies.user;
     const {name} = jwt.verify(user,JWT_SECRET)
     let addvideo = req.body.video;
-    addvideo.addby = name
+    console.log(name);
+    addvideo.addby = name;
     console.log("chech add video ");
       console.log(addvideo);
     const newVideo = new Video(addvideo);
