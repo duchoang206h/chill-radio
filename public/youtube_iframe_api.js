@@ -72,7 +72,6 @@ document.getElementById('btn-muted').addEventListener('click',()=>{
     player.setVolume(30);
   }
   else{
-
     player.mute();
     document.getElementById('muted').className = 'fal fa-volume-mute fa-lg';
   }
