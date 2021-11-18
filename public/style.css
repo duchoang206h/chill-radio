@@ -13,10 +13,9 @@ main {
 .wrapper {
   margin-left: auto;
   margin-right: auto;
-
   display: block;
   position: relative;
-
+ margin-top: -30px;
   height: 550px;
   width: 1200px;
   display: flex;
@@ -29,7 +28,6 @@ main {
   align-items: center;
  position: relative;
  margin-bottom: 20px;
- margin-top: 15px;
 }
 
 span#order,
@@ -151,8 +149,6 @@ margin-left: 10px;
   position: absolute;
   float: left;
   margin-left: 10px;
-  margin-top: 10px;
- 
 }
 #volume-control {
   z-index: 2;
