@@ -6,6 +6,7 @@ const myEmitter = new MyEmitter(); */
 const SocketService = require('../helpers/socketService')
 class Main {
   constructor() {
+    this.skip = 0 // to skip n record 
     this.queue = new Queue();
     this.time = 0;
     this.currentVideo = {};
@@ -13,7 +14,7 @@ class Main {
     this.loop();
   }
   async init() {
-    const videoList = await Video.find({},{_id: 0,videoId:1,duration:1,title:1}).limit(5); // Get Videos from database 
+    const videoList = await Video.find({},{_id: 0,videoId:1,duration:1,title:1}).skip().limit(10); // Get Videos from database 
     console.log(videoList);
     this.queue.addarray(videoList);
     this.currentVideo = this.queue.dequeue(); ///
@@ -65,8 +66,8 @@ class Main {
     console.log(video);
   }
   async checkqueue() {
-    if (this.quesesize() <= 2) {
-      const videoList = await Video.find({},{_id: 0,videoId:1,duration:1,title:1}).limit(5);
+    if (this.quesesize() <= 10) {
+      const videoList = await Video.find({},{_id: 0,videoId:1,duration:1,title:1}).limit(10);
       this.queue.addarray(videoList);
     }
   }

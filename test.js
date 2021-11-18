@@ -5,3 +5,4 @@ console.log(string); */
 for(let i =0;i<70;i++){
     let w = Math.floor(Math.random()*2000)
 }
+// ffmpeg -i  -c copy -map p:0 01.mp4

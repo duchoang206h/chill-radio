@@ -21,18 +21,16 @@ const VideoSchema = new Schema({
   videoId: {
     type: String,
     required: true,
-    unique: true,
   },
   duration: {
     type: Number,
-    required: true,
+    required: true, 
   },
   title: {
     type: String,
   },
   addby: {
-    type: Schema.Types.ObjectId,
-    ref: "User",
+    type: String,
   },
 });
 
