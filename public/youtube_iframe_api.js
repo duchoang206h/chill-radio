@@ -63,6 +63,21 @@ const video_uri_encode  = encodeURI(video_uri);
 socket.on("new_listener",(listener)=>{
   $('#listerns').html(listener);
 })
+document.getElementById('btn-muted').addEventListener('click',()=>{
+  
+  if(player.isMuted()){
+    player.unMute();
+    document.getElementById('muted').className = 'fal fa-volume fa-lg';
+    volume.value = 30;
+    player.setVolume(30);
+  }
+  else{
+
+    player.mute();
+    document.getElementById('muted').className = 'fal fa-volume-mute fa-lg';
+  }
+  
+})
 volume.addEventListener("change", ()=> {
   player.unMute();
         console.log(volume.value);
