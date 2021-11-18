@@ -14,11 +14,7 @@ class Main {
     this.loop();
   }
   async init() {
-<<<<<<< HEAD
-    const videoList = await Video.find({}).limit(20); // Get Videos from database 
-=======
     const videoList = await Video.find({},{_id: 0,videoId:1,duration:1,title:1}).skip().limit(10); // Get Videos from database 
->>>>>>> main
     console.log(videoList);
     this.queue.addarray(videoList);
     this.currentVideo = this.queue.dequeue(); ///
@@ -71,11 +67,7 @@ class Main {
   }
   async checkqueue() {
     if (this.quesesize() <= 10) {
-<<<<<<< HEAD
-      const videoList = await Video.find({}).limit(20);
-=======
-      const videoList = await Video.find({},{_id: 0,videoId:1,duration:1,title:1}).limit(10);
->>>>>>> main
+      const videoList = await Video.find({},{_id: 0,videoId:1,duration:1,title:1}).limit(20);
       this.queue.addarray(videoList);
     }
   }
