@@ -22,11 +22,7 @@ const indexRouter = require("./routes/index");
 const oauth =require('./routes/oauth')
 const morgan = require("morgan");
 const mongoose = require("mongoose");
-mongoose.connect(
-  config.MONGODB_URI,
-  { useNewUrlParser: true, useUnifiedTopology: true },
-  () => console.log("Connected to mongodb")
-);
+
 //app.set("socket.io", io);
 // view engine setup
 app.set("views", "./views");
@@ -63,4 +59,9 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   res.render("error");
 });
-server.listen(3000);
+mongoose.connect(
+  config.MONGODB_URI,
+  { useNewUrlParser: true, useUnifiedTopology: true }
+).
+then(()=>server.listen(3000))
+
