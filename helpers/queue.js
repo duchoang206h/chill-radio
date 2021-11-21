@@ -1,30 +1,25 @@
 class Queue {
   constructor() {
     this.data = [];
-    this.priodata = [];
   }
   enqueue(value) {
-    this.priodata.push(value);
+    this.data.push(value);
   }
   addarray(arr) {
     this.data = [...this.data, ...arr];
   }
   dequeue() {
-    if (this.priodata.length == 0) {
-      return this.data.shift();
-    } else {
-      return  this.priodata.shift();
-    }
+    return this.data.shift();
   }
   size() {
-    return this.data.length + this.priodata.length;
+    return this.data.length;
   }
   isEmpty() {
     return this.size() == 0;
   }
   getAllData() {
     // Return the whole data for playlist on client
-    return [...this.priodata, ...this.data];
+    return  this.data ;
   }
 }
 module.exports = Queue;

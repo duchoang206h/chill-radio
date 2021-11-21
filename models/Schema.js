@@ -32,6 +32,10 @@ const VideoSchema = new Schema({
   addby: {
     type: String,
   },
+  like:{
+    type:Number,
+    default:0,
+  }
 });
 
 const User = mongoose.model("User", UserSchema);

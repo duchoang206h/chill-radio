@@ -1,7 +1,7 @@
 const getVideoInfor = require("../helpers/getVideoInfor");
 const { Video } = require("../models/Schema");
-const {Main} =  require('../controllers/Main')
-const {JWT_SECRET} = require('../configs/config')
+const { Main } =  require('../controllers/Main')
+const { JWT_SECRET } = require('../configs/config')
 const jwt = require('jsonwebtoken')
 const main = new Main()
 const searchController = {

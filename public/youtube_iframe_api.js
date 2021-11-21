@@ -63,23 +63,27 @@ const video_uri_encode  = encodeURI(video_uri);
 socket.on("new_listener",(listener)=>{
   $('#listerns').html(listener);
 })
+let previou_volume ;
+let muteIcon =  document.getElementById('muted');
 document.getElementById('btn-muted').addEventListener('click',()=>{
-  
   if(player.isMuted()){
     player.unMute();
-    document.getElementById('muted').className = 'fal fa-volume fa-lg';
-    volume.value = 30;
-    player.setVolume(30);
+    muteIcon.className = 'fal fa-volume fa-lg';
+    volume.value = previou_volume||30;
+    player.setVolume(volume.value);
   }
   else{
     player.mute();
-    document.getElementById('muted').className = 'fal fa-volume-mute fa-lg';
+    volume.value = 0;
+    muteIcon.className = 'fal fa-volume-mute fa-lg';
   }
-  
 })
 volume.addEventListener("change", ()=> {
-  player.unMute();
+  if(player.isMuted()) player.unMute();
+  if(muteIcon.classList.contains("fa-volume-mute")) muteIcon.className = 'fal fa-volume fa-lg';
+  if(volume.value == 0 ) muteIcon.className = 'fal fa-volume-mute fa-lg';
+  previou_volume = volume.value;
         console.log(volume.value);
- player.setVolume(volume.value);
+  player.setVolume(volume.value);
 })
 //setTimeout(()=>document.getElementById(`arrow-${currentVideo}`).style.display = 'block',3000)
