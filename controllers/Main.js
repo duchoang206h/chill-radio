@@ -14,7 +14,7 @@ class Main {
     this.loop();
   }
   async init() {
-    const videoList = await Video.find({},{_id: 0,videoId:1,duration:1,title:1}).skip().limit(10); // Get Videos from database 
+    const videoList = await Video.find({},{_id: 0,videoId:1,duration:1,title:1,addby:1}).skip().limit(10); // Get Videos from database 
     console.log(videoList);
     this.queue.addarray(videoList);
     this.currentVideo = this.queue.dequeue(); ///
@@ -67,9 +67,16 @@ class Main {
   }
   async checkqueue() {
     if (this.quesesize() <= 10) {
-      const videoList = await Video.find({},{_id: 0,videoId:1,duration:1,title:1}).limit(20);
+      const videoList = await Video.find({},{_id: 0,videoId:1,duration:1,title:1,addby:1}).limit(20);
       this.queue.addarray(videoList);
     }
+  }
+  update(videoId){
+    const video = this.queue.data.find(v =>v.videoId = videoId);
+    ++ video.like;
+    Video.updateOne({videoId: videoId},{$set:{like: video.like}}).exec((err,data)=>{
+      
+    })
   }
 }
 module.exports = {Main};

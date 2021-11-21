@@ -31,8 +31,65 @@ class PriorityQueue {
       return [...this.priodata, ...this.data];
     }
   }
-const a = [1,3,4,5,6,7,8];
-console.log(a.splice(0,1));
+ function search(array, video){
+   return array.find(v => v.videoId == video.videoId);
+ }
+
+const a = [{
+  videoId : "Zzn9-ATB9aU",
+  duration : 322,
+  title : "Nàng Thơ | Hoàng Dũng | Official MV",
+  addby : "HOÀNG ĐỨC",
+  like : 0,
+}
+
+,
+{
+  videoId: "VaExN-H5vCc",
+  duration : 195,
+  title: "LEMON TREE ANIMATION WITH LYRICS",
+  addby : "HOÀNG ĐỨC",
+  like : 0,
+}
+
+,
+{
+  videoId : "e9oxsf3NWMs",
+  duration : 245,
+  title : "[VietSub+Effect] Until You -  Shayne Ward",
+ addby : "HOÀNG ĐỨC",
+  like : 0,
+ 
+}
+
+,
+{
+  
+  videoId : "F5tS5m86bOI",
+  duration : 262,
+  title : "LẠ LÙNG / Vũ. (Original)",
+ addby : "HOÀNG ĐỨC",
+  like : 0,
+ 
+},
+{
+  videoId : "ixdSsW5n2rI",
+  duration : 337,
+  title : "BƯỚC QUA NHAU / Vũ. (Official MV)",
+ addby : "HOÀNG ĐỨC",
+  like : 0,
+  
+}];
+const obj = search(a,{
+  videoId : "ixdSsW5n2rI",
+  duration : 337,
+  title : "BƯỚC QUA NHAU / Vũ. (Official MV)",
+ addby : "HOÀNG ĐỨC",
+  like : 0,
+});
+obj.title = "Hoang cute";
+console.log(a);
+/* console.log(a.splice(0,1));
 console.log(a);
 const newQueue = new PriorityQueue();
 newQueue.enqueue("Thu 2");
@@ -47,4 +104,4 @@ newQueue.dequeue();
 console.log(newQueue);
 newQueue.dequeue();
 console.log(newQueue);
-
+ */
