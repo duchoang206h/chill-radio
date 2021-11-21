@@ -13,7 +13,7 @@ const video_uri_encode  = encodeURI(video_uri);
       let player;
       async function onYouTubeIframeAPIReady() {
         const res = await axios.get(video_uri_encode)
-      //  console.log(res);
+        console.log(res.data.videoId);
         currentVideo = res.data.videoId;
         startAt = res.data.startAt;
         player = new YT.Player('videoframe', {
@@ -35,7 +35,6 @@ const video_uri_encode  = encodeURI(video_uri);
       async function onPlayerReady(event) {
        event.target.mute();
        event.target.setVolume(0);
-       
        event.target.loadVideoById(currentVideo,startAt);
        /*  player.cueVideoById(currentVideo,startAt); */
       }

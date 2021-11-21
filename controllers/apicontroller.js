@@ -34,7 +34,7 @@ const videoController = {
     res.status(200).json(currentVideo);
   },
   getAll: async (req, res) => {
-    const videolist =  main.getPlayList();
+    const videolist = main.getPlayList();
     res.status(200).json(videolist);
   },
   post: async (req, res) => {
