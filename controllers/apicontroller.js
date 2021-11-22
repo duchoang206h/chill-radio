@@ -39,10 +39,10 @@ const videoController = {
   },
   post: async (req, res) => {
     const user = req.cookies.user;
-    const {name} = jwt.verify(user,JWT_SECRET)
+    const {email} = jwt.verify(user,JWT_SECRET)
     let addvideo = req.body.video;
-    console.log(name);
-    addvideo.addby = name;
+    console.log(email);
+    addvideo.addby = email.replace('@gmail.com','');
     console.log("chech add video ");
       console.log(addvideo);
     const newVideo = new Video(addvideo);

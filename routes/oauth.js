@@ -2,8 +2,8 @@ const router = require('express').Router();
 const {callback} = require('../controllers/oauth')
 const passport = require('../middlewares/passport')
 // router.post('/login/oauth/facebook',)
-router.post('/login/google',passport.authenticate('google', { scope: ['https://www.googleapis.com/auth/plus.login'] })) 
-router.post('/login/github',passport.authenticate('github', { scope: [ 'user:email' ] }))
+router.post('/login/google',passport.authenticate('google', { scope: ['email','profile','openid'] })) 
+router.post('/login/github',passport.authenticate('github', { scope: ['user:email'] }))
 /* router.post('/login/oauth/microsoft',)*/
 router.post('/login/facebook', passport.authenticate('facebook'))
 router.get('/google/callback', passport.authenticate('google', { failureRedirect: '/login' }),callback) 
