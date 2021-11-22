@@ -48,8 +48,9 @@ function stopVideo() {
   player.stopVideo();
 }
 socket.on("new_video", (video) => {
-  if(!player){
-   
+  if(player == undefined || player == null){
+
+    window.YT.ready(function() {
     player = new YT.Player("videoframe", {
       height: "95%",
       width: "95%",
@@ -66,6 +67,7 @@ socket.on("new_video", (video) => {
         onStateChange: onPlayerStateChange,
       },
     });
+  })
   }
   else{
     player.loadVideoById(video.videoId, video.startAt);
