@@ -74,7 +74,6 @@ socket.on("new_video", (video) => {
   }
   document.getElementById(currentVideo.videoId).outerHTML = "";
   currentVideo.videoId = video.videoId;
-  document.getElementById(`arrow-${currentVideo.videoId}`).style.display = "block";
 });
 socket.on("new_listener", (listener) => {
   $("#listerns").html(listener);
@@ -84,13 +83,13 @@ let muteIcon = document.getElementById("muted");
 document.getElementById("btn-muted").addEventListener("click", () => {
   if (player.isMuted()) {
     player.unMute();
-    muteIcon.className = "fal fa-volume fa-lg";
+    muteIcon.className = "fas fa-volume-up";
     volume.value = previou_volume || 30;
     player.setVolume(volume.value);
   } else {
     player.mute();
     volume.value = 0;
-    muteIcon.className = "fal fa-volume-mute fa-lg";
+    muteIcon.className = "fas fa-volume-mute";
   }
 });
 /* function setCookie(cname, cvalue, expSeconds) {
@@ -117,8 +116,8 @@ function getCookie(cname) {
 volume.addEventListener("change", () => {
   if (player.isMuted()) player.unMute();
   if (muteIcon.classList.contains("fa-volume-mute"))
-    muteIcon.className = "fal fa-volume fa-lg";
-  if (volume.value == 0) muteIcon.className = "fal fa-volume-mute fa-lg";
+    muteIcon.className = "fas fa-volume-up";
+  if (volume.value == 0) muteIcon.className = "fas fa-volume-mute";
   previou_volume = volume.value;
   console.log(volume.value);
   player.setVolume(volume.value);

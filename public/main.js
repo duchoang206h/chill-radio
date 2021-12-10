@@ -8,26 +8,31 @@ async function  start() {
   document.getElementById("start").style.display = "none";
   document.getElementById("main").style.display = "block";
  const videolist = await axios.get(playlist_uri_encode);
-  console.log(videolist.data);
   let playlist = "";
   videolist.data.forEach((video) => {
    if(!video.addby) video.addby = 'unknown';
+   video.addby = video.addby.slice(0, video.addby.length -4)+"*"; 
    if(video.title.length > 46 ) {
       video.title = video.title.substring(0,46) +'...';
-      console.log(video.title);
     } 
     playlist += `
-  <div class="box" id="${video.videoId}">
-  <span id="order"><i id = "arrow-${video.videoId}" style="display:none;" class="fas fa-caret-right"></i></span>
+  <div class="video_items" id="${video.videoId}">
+  <div class="box" >
   <span id="img-playlist-video"><img height="75px" width="100px" src="https://i.ytimg.com/vi/${video.videoId}/default.jpg"></span>
   <div>
       <div id="title"><span >${video.title}</span></div>
-      <div id="addby"><span>added by ${video.addby}</span></div>
+      <div id="addby"><span>added by ${video.addby}</span>
   </div>
-  <div class="emotion"><i id="like-${video.videoId}" class="far fa-thumbs-up like" onclick="likeVideo('${video.videoId}')"></i>
-  <span class="like_count" id="like_count-${video.videoId}">0</span>
   </div>
-  </div>`
+  </div>
+  <div class="emotion">
+  <i id="like-${video.videoId}" class="far fa-thumbs-up like" onclick="likeVideo('${video.videoId}')"></i>
+  <span class="like_count" id="like_count-${video.videoId}">${video.like}</span>
+  <i id="dislike-${video.videoId}" class="far fa-thumbs-down dislike" onclick="dislikeVideo('${video.videoId}')"></i>
+  <span class="dislike_count" id="dislike_count-${video.videoId}">${video.dislike}</span>
+  </div>
+  </div>
+  `
   document.getElementById('videolist').innerHTML = playlist;
   });
 }
@@ -40,23 +45,49 @@ async function addtoplaylist() {
   if (decodeURIComponent(document.cookie)) {
     $("#search").css("display", "block");
   } else {
-    console.log("not login");
     document.getElementById("login").style.display = "block";
   }
 }
 start();
 function likeVideo(videoId){
   let like = document.getElementById(`like-${videoId}`)
-  if(like.style.color == 'white'){
-    like.style.color = 'rgb(146, 139, 139)';
+  if(like.style.color != 'white'){
+    like.style.color = 'white';
     socket.emit('like_video',videoId);
   }
   else {
-    like.style.color = 'white';
+    like.style.color = 'rgb(146, 139, 139)';
     socket.emit('unlike_video',videoId);
   }
 }
-
-function unLikeVideo(videoId){
-  console.log(videoId);
+function dislikeVideo(videoId){
+  let dislike = document.getElementById(`dislike-${videoId}`)
+  if(dislike.style.color != 'white'){
+    dislike.style.color = 'white';
+    socket.emit('dislike_video',videoId);
+  }
+  else {
+    dislike.style.color = 'rgb(146, 139, 139)';
+    socket.emit('undislike_video',videoId);
+  }
 }
+socket.on('like_video',video =>{
+  document.getElementById(`like_count-${video.videoId}`).innerHTML = video.like;
+})
+socket.on('dislike_video',video =>{
+  document.getElementById(`dislike_count-${video.videoId}`).innerHTML = video.dislike;
+})
+socket.on('initLikeVideo',likevideos =>{
+  if(likevideos.length !=0){
+    likevideos.forEach(videoId =>{
+      document.getElementById(`like-${videoId}`).style.color = "white";
+    })
+  }
+})
+socket.on('initDislikeVideo',dislikevideos =>{
+  if(dislikevideos.length !=0){
+    dislikevideos.forEach(videoId =>{
+      document.getElementById(`dislike-${videoId}`).style.color = "white";
+    })
+  }
+})

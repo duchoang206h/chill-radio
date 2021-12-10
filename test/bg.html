@@ -7,30 +7,36 @@
   <title>Document</title>
 </head>
 <style>
-#user{
-    align-items: center;
-    text-align: center;
-    position: relative;
-    float: right;
+  html{
+    height: 100%;
+    width: 100%;
+  }
+  body{
+    height: 100%;
+    width: 100%;
+  }
+  #login {
+  position: absolute;
+  border: 1px solid black;
+
+  margin: auto;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 300px;
+  height: 400px;
+  z-index: 1;
+  align-items: center;
+  text-align: center;
 }
-img {
-      width: 60px;
-      height: 60px;
-      display: inline-block;
-      vertical-align: middle;
-      border-radius: 50%;
-    }
-    
-#userName {
-      display: inline-block;
-      vertical-align: middle;
-      font-size: 50px;
-    }
 </style>
 <body>
-  <div  id="user">
-    <img id="userImg" src="https://i.ytimg.com/vi/06ByPlU-vb0/default.jpg">
-    <span id="userName">Hi, Duc Hoang</span>
-</div>
+  <div id="login">
+    <span>Sign in to add video</span>
+    <form action="">
+      
+    </form>
+  </div>
 </body>
 </html>
