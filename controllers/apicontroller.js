@@ -1,15 +1,18 @@
 const getVideoInfor = require("../helpers/getVideoInfor");
 const { Video } = require("../models/Schema");
-const { Main } =  require('../controllers/Main')
+const main =  require('../controllers/Main')
 const { JWT_SECRET } = require('../configs/config')
 const jwt = require('jsonwebtoken')
-const main = new Main()
 const searchController = {
   post: async (req, res) => {
+    console.log(req.body);
     const keyword = req.body.keyword.toString().replace(/ /g, "+"); // Replace keyword space by +
+    console.log(keyword);
     try {
       const response = await getVideoInfor(keyword);
-      return res.status(200).json(response);
+      const videoList = response.filter(v =>v);
+      console.log(videoList);
+      return res.status(200).json(videoList);
     } catch (error) {
       console.log(error.message);
       return res.status(500).json([]);
@@ -48,12 +51,17 @@ const videoController = {
     const newVideo = new Video(addvideo);
     try {
       const response = await newVideo.save();
-      main.addvideo(addvideo);
+      main.addvideo(newVideo);
       return res.status(200).json(response.message);
     } catch (error) {
       console.log(error);
       return res.status(500).json(error.message | error);
     }
+  },
+  emotion: async (req,res)=>{
+    const videoId = req.body.videoId;
+    const response = await main.like(videoId);
+    res.status(200).json(response)
   },
   put: (req, res) => {
     res.status(404).json({ msg: "Not found" });

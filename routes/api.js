@@ -11,5 +11,7 @@ router.get('/video/all',videoController.getAll);
 router.post('/video', videoController.post);
 router.put('/video', videoController.put);
 router.delete('/video', videoController.delete);
+router.post('/video/emotion',videoController.emotion );
+
 module.exports = router;
 

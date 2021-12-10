@@ -5,6 +5,7 @@ class SocketService{
     }
     initialize(server){
         this.io = require("socket.io")(server);
+        return this.io;
     }
     getIO(){
         return this.io;
