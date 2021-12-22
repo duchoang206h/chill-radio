@@ -28,6 +28,8 @@
         <div id="search_result">
         </div>
     </div>
+    <div id="searchError">
+    </div>
     <div id="login">
     <form action="" method="post">
         <h2 class="text-center">Sign in to add music</h2>		
@@ -58,9 +60,7 @@
             <spna id="listerns">{{online}}</spna>
        </span>
     </div>
-  <video autoplay muted loop id="bgVideo">
-    <source src="./bg_trim.mp4" type="video/mp4">
-  </video>
+ 
 
 
     <div id="login"></div>
@@ -92,6 +92,11 @@
     </div>
    
 </main>
+<div id="backgroundVideo">
+    <video autoplay muted loop id="bgVideo">
+    <source src="./bg_trim.mp4" type="video/mp4">
+</video></div>
+ 
 <script type="text/javascript"  src="youtube_iframe_api.js"></script>
 <script type="text/javascript" src="main.js"></script>
 <script type="text/javascript" src="search.js"></script>

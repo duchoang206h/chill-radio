@@ -1,3 +1,4 @@
+
 const search_uri = origin + '/api/v1/search';
 const addvideo_uri = origin + '/api/v1/video';
 const search_uri_encode = encodeURI(search_uri);
@@ -34,14 +35,28 @@ async function search (keyword){
         }
 }
 async function addtoplay(index){
-    try {
-   const response = await axios.post(addvideo_encode,{video: resultlist[index]});
+  axios({
+      method:'post',
+      url: addvideo_encode,
+      data: {video: resultlist[index]}
+  }).then(() =>{
     $('#search').css("display",'none');
     $('#search_result').html('');
     $('#search_type_input').val("");
+  })
+  .catch(()=>{
+    window.alert('Bài này đã có rồi, thêm bài khác đi')
+  })
+    /* try {
+   const response = await axios.post(addvideo_encode,{});
+   console.log(response.data);
+    $('#search').css("display",'none');
+    $('#search_result').html('');
+    $('#search_type_input').val("");
+    document.getElementById('searchError').style.display = 'block';
     } catch (error) {
         
-    }
+    } */
   
 }
 
