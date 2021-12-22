@@ -1,4 +1,4 @@
-
+let isLogin = false;
 const playlist_uri = origin + "/api/v1/video/all";
 const playlist_uri_encode = encodeURI(playlist_uri);
 $("#addVideo").click((e) => {
@@ -40,9 +40,12 @@ const updateUI = (playlist)=>{
  
 
 }
+socket.emit('checkLogin');
+socket.on('checkLogin',login =>isLogin =login)
 async function addtoplaylist() {
   // check author
-  if (decodeURIComponent(document.cookie)) {
+  
+  if (isLogin) {
     $("#search").css("display", "block");
   } else {
     document.getElementById("login").style.display = "block";

@@ -48,7 +48,7 @@ const session = expressSession ({
   cookie: {
       path: '/',
       httpOnly: true,
-      maxAge: 900000
+      maxAge: 3600*1000*24*365*10
   },
   store: store
 })
@@ -98,5 +98,5 @@ function connect(){
   })
 }
 connect().
-then(()=>server.listen(3000))
+then(()=>server.listen(80))
 
