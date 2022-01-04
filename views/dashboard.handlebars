@@ -1,0 +1,49 @@
+
+  <div class="main"> 
+    <div>
+      
+      <label for="sort">SORT BY:</label>
+
+      <select id="sort">
+        <option value="none">none</option>
+        <option value="like">Like</option>
+        <option value="dislike">Dislike</option>
+        <option value="opel">Opel</option>
+        <option value="audi">Audi</option>
+      </select>
+        
+    </div>
+    <table>
+      <tr>
+        <th>Video</th>
+        <th>Title</th>
+        <th>Like</th>
+        <th>Dislike</th>
+        <th>Addby</th>
+        <th>Delete Video</th>
+        <th>Ban User</th>
+      </tr>
+     {{#each video}}
+      <tr>
+        
+        <td><iframe width="100%" height="100%" src="https://www.youtube.com/embed/{{this.videoId}}" title="YouTube video player" frameborder="0" allowfullscreen></iframe></td>
+        <td>{{this.title}}</td>
+        <td>{{this.like}}</td>
+        <td>{{this.dislike}}</td>
+        <td>
+          <p>{{this.addby}}</p>
+          <a href="/dashboard/user/{{this.addby}}">Details</a>
+        </td>
+        <td><button id="deleteVideo"></button></td>
+        <td><button id="banUser"></button></td>
+      </tr>
+      {{/each}}
+    </table>
+    <div id="footer">
+      <i class="previous fas fa-angle-double-left fa-4x"></i>
+      <!-- <div id="pagenumber">1</div> -->
+      <span id="pagenumber">1</span>
+      <i class="next fas fa-angle-double-right fa-4x"></i>
+    </div>
+  </div>
+   

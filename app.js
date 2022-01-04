@@ -94,9 +94,14 @@ function connect(){
       { useNewUrlParser: true, useUnifiedTopology: true },
       ()=> resolve()
     )
-
   })
 }
+const { initDb } = require('./initDb')
 connect().
-then(()=>server.listen(80))
-
+then(()=>initDb().
+then(()=>server.listen(80)))
+// init some data before start
+/* connect().then(
+  ()=>server.listen(80)
+)
+ */
