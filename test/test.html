@@ -4,73 +4,129 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Document</title>
     <style>
-        #gg{
-            position: absolute;
-  margin: auto;
-  top: 0;
-  right: 0;
+      
+         table {
+            font-family: arial, sans-serif;
+            border-collapse: unset;
+            width: 80%;
+            margin: auto;
+          top: 0;
+           right: 0;
   bottom: 0;
   left: 0;
-  width: 200px;
-  height: 200px;
-   /*       
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    -webkit-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%); */
-
-        }
-    </style>
+            }
+            
+            td, th {
+            border: 1px solid #dddddd;
+            text-align: center;
+          /*   text-align: left;
+            padding: 8px; */
+            }
+            /* tr:nth-child(1) {
+            background-color: #dddddd;
+            }  */
+            th:nth-child(1){
+              width: 600px;
+            }
+            td{
+              height: 400px;
+            }
+            .main{
+              text-align: center;
+              align-items: center;
+            }
+            .footer{
+              text-align: center;
+              vertical-align: middle;
+            }
+            #pagenumber{
+              width: 10px;
+              height: 56px;
+            }
+            .next, .previous{
+              cursor: pointer;
+            }
+        </style>
 </head>
+
+
 <body>
-    <p>
-        Code ẩn và hiện thẻ div bằng Javascript
-Đề bài: Hãy viết ứng dụng ẩn và hiện thẻ div bằng Javascript bằng cách tạo ra 2 button, khi click vào button1 thì ẩn thẻ div và khi click vào button2 thì hiển thị thẻ div.
+  <div class="main"> 
+    <div>
+      
+      <label for="sort">SORT BY:</label>
 
-Đây là bài tập khá đơn giản, qua đó bạn có thể áp dụng ẩn và hiện nội dung bàng javascript.
+      <select id="sort">
+        <option value="none">none</option>
+        <option value="like">Like</option>
+        <option value="dislike">Dislike</option>
+        <option value="opel">Opel</option>
+        <option value="audi">Audi</option>
+      </select>
+        
+    </div>
+    <table>
+      <tr>
+        <th>Video</th>
+        <th>Title</th>
+        <th>Like</th>
+        <th>Dislike</th>
+        <th>Addby</th>
+        <th>Delete Video</th>
+        <th>Ban User</th>
+      </tr>
 
-Chúng ta sử dụng thuộc tính CSS display:block để hiển thị thẻ div, và thuộc tính display:none để ẩn thẻ div. Nhưng vấn đề là ta phải sử dụng Javascript để làm điều này, nên phải sử dụng cú pháp dưới đây để thay đổi giá trị cho thuộc tính display CSS.
-
-1
-document.getElementById('id_name').style.display = "block|none";
-Sau đây là bài giải tham khảo.
-
-CodeRUN
-Code ẩn và hiện thẻ div bằng Javascript
-Đề bài: Hãy viết ứng dụng ẩn và hiện thẻ div bằng Javascript bằng cách tạo ra 2 button, khi click vào button1 thì ẩn thẻ div và khi click vào button2 thì hiển thị thẻ div.
-
-Đây là bài tập khá đơn giản, qua đó bạn có thể áp dụng ẩn và hiện nội dung bàng javascript.
-
-Chúng ta sử dụng thuộc tính CSS display:block để hiển thị thẻ div, và thuộc tính display:none để ẩn thẻ div. Nhưng vấn đề là ta phải sử dụng Javascript để làm điều này, nên phải sử dụng cú pháp dưới đây để thay đổi giá trị cho thuộc tính display CSS.
-
-1
-document.getElementById('id_name').style.display = "block|none";
-Sau đây là bài giải tham khảo.
-
-CodeRUN   Code ẩn và hiện thẻ div bằng Javascript
-Đề bài: Hãy viết ứng dụng ẩn và hiện thẻ div bằng Javascript bằng cách tạo ra 2 button, khi click vào button1 thì ẩn thẻ div và khi click vào button2 thì hiển thị thẻ div.
-
-Đây là bài tập khá đơn giản, qua đó bạn có thể áp dụng ẩn và hiện nội dung bàng javascript.
-
-Chúng ta sử dụng thuộc tính CSS display:block để hiển thị thẻ div, và thuộc tính display:none để ẩn thẻ div. Nhưng vấn đề là ta phải sử dụng Javascript để làm điều này, nên phải sử dụng cú pháp dưới đây để thay đổi giá trị cho thuộc tính display CSS.
-
-1
-document.getElementById('id_name').style.display = "block|none";
-Sau đây là bài giải tham khảo.
-
-CodeRUN
-    </p>
-    <button onclick="disable()"></button>
-    <div id="gg" style="height: 300px;width: 400px; border: 1px solid black; background-color:aqua ; position: absolute;
-   display: none; top: 0;" ></div>
-    <script>
-        function disable(){
-            console.log("heello")
-            document.getElementById("gg").style.display = "block";
-        }
-    </script>
+      <tr>
+        <td><iframe width="100%" height="100%" src="https://www.youtube.com/embed/Al0PO3mrogI" title="YouTube video player" frameborder="0" allowfullscreen></iframe></td>
+        <td>Những Bản Lofi Việt Nhẹ Nhàng Cực Chill | Nhạc Lofi Chill Buồn Nhất 2021 ♫ Lofi Gây Nghiện Hay Nhất</td>
+        <td>8</td>
+        <td>8</td>
+        <td>
+          <p>duchoang</p>
+          <a href="/dashboard/user/duchoang">Details</a>
+        </td>
+        <td><button id="deleteVideo"></button></td>
+        <td><button id="banUser"></button></td>
+      </tr>
+      <tr>
+        <td><iframe width="100%" height="100%" src="https://www.youtube.com/embed/Al0PO3mrogI" title="YouTube video player" frameborder="0" allowfullscreen></iframe></td>
+        <td>Những Bản Lofi Việt Nhẹ Nhàng Cực Chill | Nhạc Lofi Chill Buồn Nhất 2021 ♫ Lofi Gây Nghiện Hay Nhất</td>
+        <td>8</td>
+        <td>8</td>
+        <td>duchoang</td>
+        <td><button id="deleteVideo"></button></td>
+        <td><button id="banUser"></button></td>
+      </tr>
+      <tr>
+        <td><iframe width="100%" height="100%" src="https://www.youtube.com/embed/Al0PO3mrogI" title="YouTube video player" frameborder="0" allowfullscreen></iframe></td>
+        <td>Những Bản Lofi Việt Nhẹ Nhàng Cực Chill | Nhạc Lofi Chill Buồn Nhất 2021 ♫ Lofi Gây Nghiện Hay Nhất</td>
+        <td>8</td>
+        <td>8</td>
+        <td>duchoang</td>
+        <td><button id="deleteVideo"></button></td>
+        <td><button id="banUser"></button></td>
+      </tr>
+      <tr>
+        <td><iframe width="100%" height="100%" src="https://www.youtube.com/embed/Al0PO3mrogI" title="YouTube video player" frameborder="0" allowfullscreen></iframe></td>
+        <td>Những Bản Lofi Việt Nhẹ Nhàng Cực Chill | Nhạc Lofi Chill Buồn Nhất 2021 ♫ Lofi Gây Nghiện Hay Nhất</td>
+        <td>8</td>
+        <td>8</td>
+        <td>duchoang</td>
+        <td><button id="deleteVideo"></button></td>
+        <td><button id="banUser"></button></td>
+      </tr>
+      
+    </table>
+    <div id="footer">
+      <i class="previous fas fa-angle-double-left fa-4x"></i>
+      <!-- <div id="pagenumber">1</div> -->
+      <span id="pagenumber">1</span>
+      <i class="next fas fa-angle-double-right fa-4x"></i>
+    </div>
+  </div>
+   
 </body>
 </html>

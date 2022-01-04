@@ -13,7 +13,6 @@ async function getCurrentVideo(){
     url:video_uri_encode,
     method:'get'
   })
-  console.log(res.data);
   currentVideo.videoId = res.data.videoId;
   currentVideo.startAt = res.data.startAt;
   window.YT.ready(function() {
@@ -41,9 +40,6 @@ function onPlayerReady(event) {
   event.target.setVolume(0);
   event.target.playVideo();
 }
-function onPlayerStateChange(event) {
-  console.log(event.data);
-}
 function stopVideo() {
   player.stopVideo();
 }
@@ -59,6 +55,7 @@ socket.on("new_video", (video) => {
         'playsinline': 1,
         'controls': 0,
         'autoplay': 1,
+        
         'mute':1,
         'start':Math.floor(video.startAt)
       },
@@ -99,7 +96,6 @@ volume.addEventListener("change", () => {
     muteIcon.className = "fas fa-volume-up";
   if (volume.value == 0) muteIcon.className = "fas fa-volume-mute";
   previou_volume = volume.value;
-  console.log(volume.value);
   player.setVolume(volume.value);
 });
 

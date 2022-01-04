@@ -31,7 +31,6 @@ async function search (keyword){
           });
           $('#search_result').html(result);
         } catch (error) {
-            console.log(error);
         }
 }
 async function addtoplay(index){
@@ -39,7 +38,7 @@ async function addtoplay(index){
       method:'post',
       url: addvideo_encode,
       data: {video: resultlist[index]}
-  }).then(() =>{
+  }).then((data) =>{
     $('#search').css("display",'none');
     $('#search_result').html('');
     $('#search_type_input').val("");
@@ -47,17 +46,6 @@ async function addtoplay(index){
   .catch(()=>{
     window.alert('Bài này đã có rồi, thêm bài khác đi')
   })
-    /* try {
-   const response = await axios.post(addvideo_encode,{});
-   console.log(response.data);
-    $('#search').css("display",'none');
-    $('#search_result').html('');
-    $('#search_type_input').val("");
-    document.getElementById('searchError').style.display = 'block';
-    } catch (error) {
-        
-    } */
-  
 }
 
 document.getElementById("search_close").addEventListener('click',()=>{

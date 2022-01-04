@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const {callback} = require('../controllers/oauth')
+const { callback } = require("../controllers/oauth");
 const passport = require('../middlewares/passport')
 // router.post('/login/oauth/facebook',)
 router.post('/login/google',passport.authenticate('google', { scope: ['email','profile','openid'] })) 
