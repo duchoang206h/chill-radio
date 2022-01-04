@@ -9,7 +9,7 @@ class MainController {
    getIndex = async (req, res) => {
     if (!req.session.isLogin)
       res.render("index", {
-        img_url: "images/default_avata.png",
+        img_url: "images/default_avatar.png",
         online: this.online_listener,
       });
     else {

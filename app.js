@@ -5,8 +5,8 @@ const { createServer } = require("http");
 const path = require('path')
 const cors = require("cors");
 require('dotenv').config();
-const ratelimit = require("./middlewares/ratelimit");
-const config = require("./configs/config");
+const ratelimit = require("./src/middlewares/ratelimit");
+const config = require("./src/configs/config");
 const expressSession = require('express-session');
 const MongoStore = require('connect-mongodb-session')(expressSession);
 const sharedsession = require("express-socket.io-session");
@@ -20,7 +20,7 @@ const app = express();
 const server = createServer(app);
 
 // init socketio
-const io = require('./helpers/socketService').initialize(server);
+const io = require('./src/socket/socket.service').init(server);
 
 
 //const io = new Server(server);
@@ -28,10 +28,11 @@ const io = require('./helpers/socketService').initialize(server);
 const handlebars = require("express-handlebars");
 
 const helmet = require("helmet");
-const apiRouter = require("./routes/api");
-const indexRouter = require("./routes/index");
-//const auth0config = require('./routes/auth0config')
-const oauth =require('./routes/oauth')
+const searchRouter = require("./src/search/search.router");
+const indexRouter = require("./src/index/index.router");
+const authRouter =require('./src/auth/auth.router')
+const videoRouter = require('./src/video/video.router')
+const adminRouter = require('./src/admin/admin.router')
 const morgan = require("morgan");
 const mongoose = require("mongoose");
 /* require('./controllers/socketService') */
@@ -63,12 +64,16 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static("public"));
-app.use(require('./middlewares/passport').initialize())
-app.use("/api/v1", ratelimit); // Rate limit
-app.use("/api/v1", apiRouter);
-//app.use("/config",auth0config);
-app.use('/auth',oauth)
+app.use(require('./src/auth/passport').initialize())
+
+
+app.use("/", ratelimit); // Rate limit
+app.use("/", searchRouter);
+app.use('/',authRouter)
 app.use("/", indexRouter);
+app.use("/", videoRouter);
+app.use("/", adminRouter);
+
 app.post('/login',(req,res)=>{
   res.sendFile('login.html', { root: path.join(__dirname, './public') });
 })
@@ -96,12 +101,12 @@ function connect(){
     )
   })
 }
+require('./backupDb')
 const { initDb } = require('./initDb')
-connect().
-then(()=>initDb().
-then(()=>server.listen(80)))
 // init some data before start
-/* connect().then(
-  ()=>server.listen(80)
-)
- */
+/* connect().
+then(()=>initDb().
+then(()=>server.listen(80))) */
+connect().then(()=>server.listen(3000))
+
+
