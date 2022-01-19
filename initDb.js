@@ -68,7 +68,6 @@ const { VideoService } =require('./src/video/video.service')
 const videoService = new VideoService()
 const { Video } = require('./src/video/video.model')
 async function initDb(){
-  console.log(listVideo);
   return new Promise((resolve,reject)=>{
     mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then( async ()=>{
