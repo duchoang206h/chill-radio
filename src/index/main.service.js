@@ -1,6 +1,7 @@
 const { VideoService } = require('../video/video.service')
 const Queue = require('../utils/queue')
 const io = require('../socket/socket.service').getIO();
+const delay = require('delay')
 class MainService {
   constructor() {
     this.io = io;
@@ -13,6 +14,7 @@ class MainService {
     this.loop();
   }
   async init() {
+    await delay(3000);
     const videoList = await this.VideoService.findByFiller({limit: 20, skip: this.skip, mostLike: true});
     this.skip += 20;
     this.queue.addarray(videoList); // Init video list to queue

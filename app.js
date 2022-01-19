@@ -101,12 +101,16 @@ function connect(){
     )
   })
 }
-require('./backupDb')
-const { initDb } = require('./initDb')
+/* require('./backupDb') */
+
 // init some data before start
+
+/* then(()=>initDb(). */
 /* connect().
-then(()=>initDb().
-then(()=>server.listen(80))) */
-connect().then(()=>server.listen(3000))
+then(()=>initDb().then(()=>server.listen(3000,()=>console.log("Running")))) */
+const { initDb } = require('./initDb')
+initDb().then(()=>server.listen(3000,()=>console.log('Running')))
+
+/* connect().then(()=>server.listen(3000)) */
 
 
