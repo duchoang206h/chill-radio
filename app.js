@@ -101,7 +101,7 @@ function connect(){
     )
   })
 }
-/* require('./backupDb') */
+require('./backupDb')
 
 // init some data before start
 
