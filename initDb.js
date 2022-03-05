@@ -1,5 +1,4 @@
-const mongoose = require('mongoose')
-const { MONGODB_URI } = require('./src/configs/config')
+
 const listVideo = [{
   videoId: "VaExN-H5vCc",
   duration: 195,
@@ -65,18 +64,14 @@ const listVideo = [{
   dislike: 0
 }]
 const { VideoService } =require('./src/video/video.service')
+const { Video, sequelize} = require('./src/video/video.model')
 const videoService = new VideoService()
-const { Video } = require('./src/video/video.model')
 async function initDb(){
-  return new Promise((resolve,reject)=>{
-    mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then( async ()=>{
+   await sequelize.sync({force: true})
     for( let i = 0;i<listVideo.length;i++){
-      await videoService.create(listVideo[i])
+    await videoService.create(listVideo[i]);
     }
-    return resolve();
-  })
-  })
+    console.log("Init db success!");
 }
 
 module.exports = { initDb }
