@@ -100,7 +100,8 @@ const adminRouter = require("../admin/admin.router");
   });
   // Cronjob
   require('../backupDB/backupdb')
-  server.listen(3000,()=>console.log("Running port 3000"))
+  const PORT = process.env.PORT ||3000;
+  server.listen(PORT,()=>console.log("Running port 3000"))
   return app;
 };
 
