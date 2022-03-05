@@ -6,7 +6,7 @@ const GoogleStrategy = new Google(
   {
     clientID: google.client_id,
     clientSecret: google.client_secret,
-    callbackURL: "http://localhost:3000/auth/google/callback",
+    callbackURL: "https://chillradio.herokuapp.com/auth/google/callback",
   },
   function (accessToken, refreshToken, profile, done) {
     return done(null, profile);
@@ -16,7 +16,7 @@ const GithubStrategy = new Github(
   {
     clientID: github.client_id,
     clientSecret: github.client_secret,
-    callbackURL: "http://localhost:3000/auth/github/callback",
+    callbackURL: "https://chillradio.herokuapp.com/auth/github/callback",
   },
   function (accessToken, refreshToken, profile, done) {
     return done(null, profile);
@@ -26,7 +26,7 @@ const FacebookStrategy = new Facebook(
   {
     clientID: facebook.client_id,
     clientSecret: facebook.client_secret,
-    callbackURL: "http://localhost:3000/auth/facebook/callback",
+    callbackURL: "https://chillradio.herokuapp.com/auth/facebook/callback",
   },
   function (accessToken, refreshToken, profile, done) {
     return done(null, profile);
