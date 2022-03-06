@@ -4,7 +4,12 @@ const { JWT_SECRET } = require('../configs/config')
 const callback = (req,res) => {
     req.session.displayName = req.user.displayName;
     req.session.img_url = req.user.photos[0].value;
-    req.session.email = req.user.email;
+    if(!req.user.email){
+        req.session.email = req.user.username;
+    }else{
+        req.session.email = req.user.email;
+    }
+    console.log("EMAIL",req.session.email);
     req.session.isLogin = true;
     res.redirect('/')
     }

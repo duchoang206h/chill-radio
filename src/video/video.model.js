@@ -56,6 +56,7 @@ const Video = mongoose.model("Video", VideoSchema);
 module.exports = { Video }
  */
 const { Sequelize, Model, DataTypes } = require('sequelize');
+
 const sequelize = new Sequelize('sqlite::memory:');
 
 const Video = sequelize.define('Videos',{
