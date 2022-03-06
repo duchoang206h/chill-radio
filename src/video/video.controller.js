@@ -48,4 +48,4 @@ class VideoController {
         res.status(404).json({ msg: "Not found" });
       }
 }
-module.exports = new VideoController()
+module.exports = new VideoController();

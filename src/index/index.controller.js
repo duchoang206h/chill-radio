@@ -24,17 +24,22 @@ class MainController {
       let arrayVideoDislike = [];
       if (socket.handshake.session.like) {
         for (let video in socket.handshake.session.like) {
+          console.log("LIKEEEEEEEEEEEEEEEE");
           if (socket.handshake.session.like[video] == true)
             arrayVideoLike.push(video);
         }
+       setTimeout(() => {
         socket.emit("initLikeVideo", arrayVideoLike);
+       }, 1000);
       }
       if (socket.handshake.session.dislike) {
         for (let video in socket.handshake.session.dislike) {
           if (socket.handshake.session.dislike[video] == true)
             arrayVideoDislike.push(video);
         }
-        socket.emit("initDislikeVideo", arrayVideoDislike);
+        setTimeout(() => {
+          socket.emit("initDislikeVideo", arrayVideoDislike);
+        }, 1000);
       }
       if (!this.list_connected [socket.handshake.address]) {
         this.list_connected [socket.handshake.address] = true;

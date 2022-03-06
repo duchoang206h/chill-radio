@@ -79,7 +79,7 @@ class MainService {
       this.VideoService.updateLike(videoId,++this.currentVideo.like);
       return this.currentVideo;
     } else {
-      const video = this.queue.data.find((v) => (v.videoId = videoId));
+      const video = this.queue.data.find((v) => (v.videoId == videoId));
       if (!video) return;
       else {
         this.VideoService.updateLike(videoId,++video.like);
@@ -92,7 +92,7 @@ class MainService {
       this.VideoService.updateLike(videoId, --this.currentVideo.like);
       return this.currentVideo;
     } else {
-      const video = this.queue.data.find((v) => (v.videoId = videoId));
+      const video = this.queue.data.find((v) => (v.videoId == videoId));
       if (!video) return;
       else {
         this.VideoService.updateLike(videoId,--video.like);
@@ -105,7 +105,7 @@ class MainService {
       this.VideoService.updateDislike(videoId, ++this.currentVideo.dislike);
       return this.currentVideo;
     } else {
-      const video = this.queue.data.find((v) => (v.videoId = videoId));
+      const video = this.queue.data.find((v) => (v.videoId == videoId));
       if (!video) return;
       else {
         this.VideoService.updateDislike(videoId,++video.dislike);
@@ -118,7 +118,7 @@ class MainService {
       this.VideoService.updateDislike(videoId, --this.currentVideo.dislike);
       return this.currentVideo;
     } else {
-      const video = this.queue.data.find((v) => (v.videoId = videoId));
+      const video = this.queue.data.find((v) => (v.videoId == videoId));
       if (!video) return;
       else {
         this.VideoService.updateDislike(videoId, --video.dislike);
