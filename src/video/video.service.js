@@ -133,7 +133,7 @@ class VideoService {
     if(filler.skip) {
       const count = await this.Video.count();
       if(filler.skip>= count) {
-        filler.skip -= count;
+        filler.skip %= count;
       }
     }
     let sortResult = [];

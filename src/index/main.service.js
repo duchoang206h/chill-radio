@@ -22,7 +22,7 @@ class MainService {
     this.time = Date.now() / 1000;
   }
   async loop() {
-    await this.checkqueue();
+    this.checkqueue();
     this.videoEnd();
     setTimeout(() => this.loop(), 5000);
   }
@@ -65,6 +65,7 @@ class MainService {
     this.io.emit("addvideo", video);
   }
   async checkqueue() {
+    console.log("Checking");
     if (this.quesesize() <= 10) {
       const videoList = await this.VideoService.findByFiller({skip: this.skip, limit: 20, mostLike: true});
       this.skip += 20;
