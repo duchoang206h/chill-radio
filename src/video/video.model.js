@@ -63,7 +63,8 @@ const Video = sequelize.define('Videos',{
   videoId:{
     type:DataTypes.STRING,
     allowNull: false,
-    primaryKey: true
+    primaryKey: true,
+    unique:true
 },
 title:{
     type: DataTypes.STRING,
