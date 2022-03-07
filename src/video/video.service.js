@@ -22,6 +22,7 @@ class VideoService {
   }
   async create(video) {
     try {
+   //   console.log(video);
       ///const result = await this.Video.find({ videoId: video.videoId });
       const result = await this.Video.create(video);
     //  console.log(result.toJSON());
