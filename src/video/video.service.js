@@ -20,6 +20,17 @@ class VideoService {
       return undefined;
     }
   }
+  async findAll(){
+    try {
+      const result = await this.Video.findAll({
+        attributes:['videoId','title','duration','addby','like','dislike']
+      })
+      result = result.map(v =>v.dataValues)
+          return result;
+    } catch (error) {
+      return [];
+    }
+  }
   async create(video) {
     try {
    //   console.log(video);
