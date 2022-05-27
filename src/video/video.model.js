@@ -58,7 +58,10 @@ module.exports = { Video }
 const { DATABASE_URL } = require('../configs/config')
 const { Sequelize, Model, DataTypes } = require('sequelize');
 
-const sequelize = new Sequelize(DATABASE_URL, { logging: false });
+const sequelize = new Sequelize(DATABASE_URL, { logging: false , dialectOptions:{ ssl: {
+  require: true, // This will help you. But you will see nwe error
+  rejectUnauthorized: false // This line will fix new error
+}}});
 
 const Video = sequelize.define('Videos',{
   videoId:{
