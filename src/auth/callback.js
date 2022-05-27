@@ -9,7 +9,6 @@ const callback = (req,res) => {
     }else{
         req.session.email = req.user.email;
     }
-    console.log("EMAIL",req.session.email);
     req.session.isLogin = true;
     res.redirect('/')
     }
