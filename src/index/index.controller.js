@@ -24,7 +24,7 @@ class MainController {
       let arrayVideoDislike = [];
       if (socket.handshake.session.like) {
         for (let video in socket.handshake.session.like) {
-          console.log("LIKEEEEEEEEEEEEEEEE");
+       
           if (socket.handshake.session.like[video] == true)
             arrayVideoLike.push(video);
         }
