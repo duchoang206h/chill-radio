@@ -1,4 +1,4 @@
-# chill-radio-product
+# chill-radio
 
 Tech
 Frontend:
