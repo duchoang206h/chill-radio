@@ -1,6 +1,7 @@
 const { VideoService } = require('../video/video.service')
 const Queue = require('../utils/queue')
 const io = require('../socket/socket.service').getIO();
+const { backup } = require('../backupDB/backupdb')
 const delay = require('delay')
 class MainService {
   constructor() {
@@ -12,6 +13,7 @@ class MainService {
     this.currentVideo = {};
     this.init();
     this.loop();
+    this.backupDB();
   }
   async init() {
     await delay(3000);
@@ -22,7 +24,6 @@ class MainService {
     this.time = Date.now() / 1000;
   }
   async loop() {
-    this.checkqueue();
     this.videoEnd();
     setTimeout(() => this.loop(), 5000);
   }
@@ -73,6 +74,7 @@ class MainService {
       this.io.emit("addvideo", videoList);
       if(this.skip > this.VideoService.count()) this.skip = this.VideoService.count(); // reset skip when skip gt total video record
     }
+    setTimeout(()=>this.checkqueue(),600000)
   }
 
   like(videoId) {
@@ -126,6 +128,10 @@ class MainService {
         return video;
       }
     }
+  }
+  backupDB(){
+    backup();
+    setTimeout(()=>this.backupDB(),3600000)
   }
 }
 module.exports = new MainService();
