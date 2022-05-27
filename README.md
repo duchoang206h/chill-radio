@@ -1,9 +1,9 @@
 # chill-radio
 
-Tech
-Frontend:
+# Tech
+# Frontend:
   - Html, css, js, bootstrap
-Backend:
+# Backend:
   - Nodejs - Expressjs
   - Database: Postgres
   - ORM : Sequelize
