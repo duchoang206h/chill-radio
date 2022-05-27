@@ -19,7 +19,8 @@ const backup = async () =>{
         console.log(error);
     }
 }
-const job = new CronJob('00 00 00 * * *',()=>{
+/* const job = new CronJob('00 00 00 * * *',()=>{
     backup();
 } );
-job.start();
+job.start(); */
+module.exports = { VideoBackupModel,backup }

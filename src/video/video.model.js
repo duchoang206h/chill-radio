@@ -55,9 +55,10 @@ const VideoSchema = new Schema({
 const Video = mongoose.model("Video", VideoSchema);
 module.exports = { Video }
  */
+const { DATABASE_URL } = require('../configs/config')
 const { Sequelize, Model, DataTypes } = require('sequelize');
 
-const sequelize = new Sequelize('sqlite::memory:');
+const sequelize = new Sequelize(DATABASE_URL, { logging: false });
 
 const Video = sequelize.define('Videos',{
   videoId:{
@@ -71,19 +72,19 @@ title:{
     allowNull:false,
 },
 duration:{
-    type:DataTypes.NUMBER,
+    type:DataTypes.INTEGER,
     allowNull:false,
 },
 addby:{
     type: DataTypes.STRING,
 },
 like:{
-    type:DataTypes.NUMBER,
+    type:DataTypes.INTEGER,
     defaultValue: 0
 },
 dislike:{
-    type:DataTypes.NUMBER,
+    type:DataTypes.INTEGER,
     defaultValue: 0
 }
 })
-module.exports = { Video ,sequelize, VideoSchema}
+module.exports = { Video , sequelize, VideoSchema}

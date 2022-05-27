@@ -1,5 +1,4 @@
 const { Video } = require("./video.model");
-
  
 class VideoService {
 
@@ -11,7 +10,7 @@ class VideoService {
 
       //const result = await this.Video.findOne({ videoId: videoId });
       const result = await this.Video.findOne({
-        where:{videoId: videoId},
+        where:{ videoId: videoId },
         attributes:['videoId','title','duration','addby','like','dislike']
       })
       return result.dataValues;
@@ -59,7 +58,6 @@ class VideoService {
   }
   async updateLike(videoId, like){
         try {
-           // await this.Video.updateOne({videoId:videoId},{$set:{like: like}});
            await this.Video.update({like:like},{
              where:{
                videoId:videoId
@@ -115,33 +113,7 @@ class VideoService {
    *  limit: Number, skip?: Number}} filler 
    */
   async findByFiller(filler){
-    /* const countVideo = this.count(); // Amount of video record in db
-    let fillerObj ={};
-    if(filler.limit) {
-      fillerObj.limit = filler.limit
-    }
-    if(filler.skip){
-      if(filler.skip < countVideo){
-        fillerObj.skip = filler.skip
-      }
-      else if(filler.skip == countVideo){
-        fillerObj.skip = 0;
-      }else{
-        fillerObj.skip = filler.skip - countVideo;
-      }
-    }
-    if(filler.mostLike){
-      fillerObj.sort = {};
-      fillerObj.sort.like = 1;
-    }
-    if(filler.mostLike){
-      if(fillerObj.sort){
-        fillerObj.sort.dislike = 1;
-      }else{
-        fillerObj.sort = {};
-        fillerObj.sort.dislike = 1;
-      }
-    } */
+  
     if(filler.skip) {
       const count = await this.Video.count();
       if(filler.skip>= count) {
@@ -175,5 +147,6 @@ class VideoService {
     }
     
   }
+  
 }
 module.exports = { VideoService };

@@ -10,14 +10,8 @@ const config = require("../configs/config");
 const expressSession = require("express-session");
 const Sequelize = require("sequelize");
 // const MongoStore = require('connect-mongodb-session')(expressSession);
-const SequelizeStore = require("connect-session-sequelize")(
-  expressSession.Store
-);
 const sharedsession = require("express-socket.io-session");
 const { sequelize } = require("../video/video.model");
-const store = new SequelizeStore({
-  db: sequelize,
-});
 const compression = require("compression");
 //socketio
 // init socketio
@@ -50,8 +44,7 @@ module.exports = () => {
       path: "/",
       httpOnly: true,
       maxAge: 3600 * 1000 * 24 * 365 * 10,
-    },
-    store: store,
+    }
   });
   app.use(session);
   io.use(
@@ -70,9 +63,9 @@ module.exports = () => {
   const indexRouter = require("../index/index.router");
   const searchRouter = require("../search/search.router");
 
-const authRouter = require("../auth/auth.router");
-const videoRouter = require("../video/video.router");
-const adminRouter = require("../admin/admin.router");
+ const authRouter = require("../auth/auth.router");
+ const videoRouter = require("../video/video.router");
+ const adminRouter = require("../admin/admin.router");
   app.use("/", ratelimit); // Rate limit
   app.use("/", searchRouter);
   app.use("/", authRouter);

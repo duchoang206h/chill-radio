@@ -18,7 +18,6 @@ class Queue {
     return this.size() == 0;
   }
   getAllData() {
-    // Return the whole data for playlist on client
     return  this.data ;
   }
 }
