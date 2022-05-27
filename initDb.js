@@ -1,7 +1,8 @@
 const mongose = require('mongoose');
 const { Video, sequelize,VideoSchema} = require('./src/video/video.model')
+const {  MONGODB_URI } = require('./src/configs/config')
 const { VideoService } =require('./src/video/video.service')
-const connectBK = mongose.createConnection('mongodb+srv://duchoang206h:120202@cluster0.zhldv.mongodb.net/chillradio?retryWrites=true&w=majority', {useNewUrlParser: true,useUnifiedTopology: true});
+const connectBK = mongose.createConnection(MONGODB_URI, {useNewUrlParser: true,useUnifiedTopology: true});
 const VideoBackupModel = connectBK.model('Video',VideoSchema);
 const videoService = new VideoService()
 async function initDb(){
