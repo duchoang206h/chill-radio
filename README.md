@@ -8,7 +8,7 @@
   - Database: Postgres
   - ORM : Sequelize
   - Session
-  - Authentication: Local, Oath (Google, Github, Facebook)
+  - Authentication: Local, Oauth2 (Google, Github, Facebook)
   - Datastructure: Queue
   - Realtime: SocketIO
   - Template Engine: Handlebars
